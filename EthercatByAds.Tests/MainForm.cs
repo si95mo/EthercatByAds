@@ -17,6 +17,7 @@ namespace EthercatByAds.Tests
 
         // Config files path
         private const string AiPath = "files//analog_inputs.csv";
+
         private const string AoPath = "files//analog_outputs.csv";
         private const string DiPath = "files//digital_inputs.csv";
         private const string DoPath = "files//digital_outputs.csv";

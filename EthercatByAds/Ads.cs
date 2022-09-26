@@ -12,6 +12,8 @@ namespace EthercatByAds
     /// </summary>
     public static class Ads
     {
+        #region Public fields
+
         /// <summary>
         /// The initialized status (<see langword="true"/> if the initialization has been completed, <see langword="false"/> otherwise)
         /// </summary>
@@ -30,7 +32,17 @@ namespace EthercatByAds
         /// </remarks>
         public static string ReasonOfFailure { get; private set; } = "";
 
+        #endregion Public fields
+
+        #region Private variables
+
         private static TwincatResource resource;
+
+        #endregion Private variables
+
+        #region Public methods
+
+        #region Start/stop methods
 
         /// <summary>
         /// Initialize the communication with the PLC and create the communication channels
@@ -106,77 +118,6 @@ namespace EthercatByAds
         }
 
         /// <summary>
-        /// Handle an error status
-        /// </summary>
-        /// <param name="reasonOfFailure">The reason of failure</param>
-        private static void HandleError(string reasonOfFailure)
-        {
-            IsInError = true;
-            ReasonOfFailure = reasonOfFailure;
-        }
-
-        /// <summary>
-        /// Create an async <see cref="Task"/> that attempt to reconnect the
-        /// <see cref="TwincatResource"/> to the PLC
-        /// </summary>
-        /// <param name="reconnectionInterval">The reconnection interval (in milliseconds)</param>
-        /// <returns>The async <see cref="Task"/></returns>
-        private static Task CreateNewReconnectingTask(int reconnectionInterval = 10000)
-        {
-            // Create the reconnecting task
-            Task reconnectingTask = new Task(async () =>
-                {
-                    while (true)
-                    {
-                        if (resource.Status.Value == ResourceStatus.Failure) // If the resource is in failure
-                        {
-                            await Logger.WarnAsync($"{resource.Code} in failure. Attempting a reconnection to the PLC");
-                            await resource.Start(); // Attempt to start it
-                        }
-
-                        // Wait for <reconnectionInterval> milliseconds
-                        await Task.Delay(reconnectionInterval);
-                    }
-                }
-            );
-
-            return reconnectingTask;
-        }
-
-        /// <summary>
-        /// Update the <see cref="ReasonOfFailure"/> and <see cref="IsInError"/> values
-        /// </summary>
-        private static void HandleStatusChange()
-        {
-            if (resource.Status.Value != ResourceStatus.Starting && resource.Status.Value != ResourceStatus.Stopping)
-                IsInError = resource.Status.Value == ResourceStatus.Failure;
-
-            if (!IsInError) // The resource is not in error
-                ReasonOfFailure = "";
-            else // The resource is in error
-            {
-                if (resource.LastFailure.Description.CompareTo(string.Empty) != 0)
-                {
-                    // Get the error description
-                    ReasonOfFailure = resource.LastFailure.Description;
-
-                    // And parse it (remove the resource code and the string " - ")
-                    ReasonOfFailure = ReasonOfFailure.Replace(resource.Code, string.Empty);
-                    ReasonOfFailure = ReasonOfFailure.Remove(0, 3);
-                    ReasonOfFailure = ReasonOfFailure.Trim();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Update the <see cref="ReasonOfFailure"/> value
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The <see cref="ValueChangedEventArgs"/></param>
-        private static void Status_ValueChanged(object sender, ValueChangedEventArgs e)
-            => HandleStatusChange();
-
-        /// <summary>
         /// Stop the Ads communication with the PLC
         /// </summary>
         /// <returns><see langword="true"/> if the communication stopped successfully, <see langword="false"/> otherwise</returns>
@@ -188,6 +129,10 @@ namespace EthercatByAds
             bool returnValue = resource.Status.Value == ResourceStatus.Stopped;
             return returnValue;
         }
+
+        #endregion Start/stop methods
+
+        #region Write methods
 
         /// <summary>
         /// Write a new value to the PLC's variable
@@ -254,6 +199,10 @@ namespace EthercatByAds
 
             return returnValue;
         }
+
+        #endregion Write methods
+
+        #region Read methods
 
         /// <summary>
         /// Read a variable from the PLC
@@ -322,5 +271,84 @@ namespace EthercatByAds
 
             return returnValue;
         }
+
+        #endregion Read methods
+
+        #endregion Public methods
+
+        #region Helper methods
+
+        /// <summary>
+        /// Handle an error status
+        /// </summary>
+        /// <param name="reasonOfFailure">The reason of failure</param>
+        private static void HandleError(string reasonOfFailure)
+        {
+            IsInError = true;
+            ReasonOfFailure = reasonOfFailure;
+        }
+
+        /// <summary>
+        /// Create an async <see cref="Task"/> that attempt to reconnect the
+        /// <see cref="TwincatResource"/> to the PLC
+        /// </summary>
+        /// <param name="reconnectionInterval">The reconnection interval (in milliseconds)</param>
+        /// <returns>The async <see cref="Task"/></returns>
+        private static Task CreateNewReconnectingTask(int reconnectionInterval = 10000)
+        {
+            // Create the reconnecting task
+            Task reconnectingTask = new Task(async () =>
+            {
+                while (true)
+                {
+                    if (resource.Status.Value == ResourceStatus.Failure) // If the resource is in failure
+                    {
+                        await Logger.WarnAsync($"{resource.Code} in failure. Attempting a reconnection to the PLC");
+                        await resource.Start(); // Attempt to start it
+                    }
+
+                    // Wait for <reconnectionInterval> milliseconds
+                    await Task.Delay(reconnectionInterval);
+                }
+            }
+            );
+
+            return reconnectingTask;
+        }
+
+        /// <summary>
+        /// Update the <see cref="ReasonOfFailure"/> and <see cref="IsInError"/> values
+        /// </summary>
+        private static void HandleStatusChange()
+        {
+            if (resource.Status.Value != ResourceStatus.Starting && resource.Status.Value != ResourceStatus.Stopping)
+                IsInError = resource.Status.Value == ResourceStatus.Failure;
+
+            if (!IsInError) // The resource is not in error
+                ReasonOfFailure = "";
+            else // The resource is in error
+            {
+                if (resource.LastFailure.Description.CompareTo(string.Empty) != 0)
+                {
+                    // Get the error description
+                    ReasonOfFailure = resource.LastFailure.Description;
+
+                    // And parse it (remove the resource code and the string " - ")
+                    ReasonOfFailure = ReasonOfFailure.Replace(resource.Code, string.Empty);
+                    ReasonOfFailure = ReasonOfFailure.Remove(0, 3);
+                    ReasonOfFailure = ReasonOfFailure.Trim();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update the <see cref="ReasonOfFailure"/> value
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The <see cref="ValueChangedEventArgs"/></param>
+        private static void Status_ValueChanged(object sender, ValueChangedEventArgs e)
+            => HandleStatusChange();
+
+        #endregion Helper methods
     }
 }

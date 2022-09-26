@@ -33,6 +33,8 @@ namespace EthercatByAds
             return channels;
         }
 
+        #region Helper methods
+
         /// <summary>
         /// Read the channels configuration file
         /// </summary>
@@ -68,5 +70,7 @@ namespace EthercatByAds
 
             return channels;
         }
+
+        #endregion Helper methods
     }
 }
