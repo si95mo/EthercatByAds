@@ -57,7 +57,7 @@ namespace EthercatByAds
             string digitalOutputsPath = "digital_outputs.csv", char delimiter = ',')
         {
             // **** Logger initialization
-            Logger.Initialize();
+            //Logger.Initialize();
 
             // **** Resource initialization
             resource = new TwincatResource("TwincatByAdsResource", asmNetAddress, port, pollingInterval);
