@@ -11,7 +11,7 @@ namespace EthercatByAds.Tests
     public partial class MainForm : Form
     {
         // Twincat connection
-        private const string AsmNetAddress = "169.254.174.61.1.1";
+        private const string AsmNetAddress = "5.112.56.172.1.1";
 
         private const int Port = 851;
 
@@ -25,6 +25,9 @@ namespace EthercatByAds.Tests
         // For parsing
         private const char DelimiterChar = ',';
 
+        // Polling time
+        private const int PollingTime = 10;
+
         // I/O variable names
         private List<string> inputNames = new List<string>();
 
@@ -32,8 +35,8 @@ namespace EthercatByAds.Tests
 
         // Tasks
         private Task updateTask;
-
         private Task uiTask;
+        private object lockObject = new object();
 
         public MainForm()
         {
@@ -43,8 +46,10 @@ namespace EthercatByAds.Tests
 
             GetVariableNames();
 
-            BindingSource bs = new BindingSource();
-            bs.DataSource = outputNames;
+            BindingSource bs = new BindingSource
+            {
+                DataSource = outputNames
+            };
             cbxOutputNames.DataSource = bs;
             cbxOutputNames.SelectedIndex = 0;
 
@@ -53,6 +58,20 @@ namespace EthercatByAds.Tests
                 {
                     Dictionary<string, object> dataSource = new Dictionary<string, object>();
                     object value;
+                    Action initializeDataGridView = new Action(() =>
+                        {
+
+                            dgvInputs.DataSource = (from d in dataSource orderby d.Key select new { d.Key, d.Value }).ToList();
+                            dgvInputs.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                            dgvInputs.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            dgvInputs.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        }
+                    );
+
+                    if (!InvokeRequired)
+                        initializeDataGridView();
+                    else
+                        BeginInvoke(initializeDataGridView);
 
                     while (true)
                     {
@@ -75,12 +94,12 @@ namespace EthercatByAds.Tests
                                 dataSource[inputName] = value;
                         }
 
-                        if (!InvokeRequired)
-                            UpdateVariablesValue(dataSource);
-                        else
-                            BeginInvoke(new Action(() => UpdateVariablesValue(dataSource)));
+                        //if (!InvokeRequired)
+                        //    UpdateVariablesValue(dataSource);
+                        //else
+                        //    BeginInvoke(new Action(() => UpdateVariablesValue(dataSource)));
 
-                        await Task.Delay(1000);
+                        await Task.Delay(2000);
                     }
                 }
             );
@@ -94,18 +113,18 @@ namespace EthercatByAds.Tests
         /// </summary>
         private void GetVariableNames()
         {
-            string[] aiText = File.ReadAllLines(AiPath);
-            string[] diText = File.ReadAllLines(DiPath);
+            string[] aiText = File.ReadAllLines(AiPath).Skip(1).ToArray(); // Remove headers
+            string[] diText = File.ReadAllLines(DiPath).Skip(1).ToArray();
             string[] inputs = aiText.Concat(diText).ToArray();
 
-            string[] aoText = File.ReadAllLines(AoPath);
-            string[] doText = File.ReadAllLines(DoPath);
+            string[] aoText = File.ReadAllLines(AoPath).Skip(1).ToArray();
+            string[] doText = File.ReadAllLines(DoPath).Skip(1).ToArray();
             string[] outputs = aoText.Concat(doText).ToArray();
 
-            for (int i = 1; i < inputs.Length; i++)
+            for (int i = 0; i < inputs.Length; i++)
                 inputNames.Add(inputs[i].Split(DelimiterChar)[0].Trim());
 
-            for (int i = 1; i < outputs.Length; i++)
+            for (int i = 0; i < outputs.Length; i++)
                 outputNames.Add(outputs[i].Split(DelimiterChar)[0].Trim());
         }
 
@@ -115,10 +134,13 @@ namespace EthercatByAds.Tests
         /// <param name="dataSource">The data source from which get the values</param>
         private void UpdateVariablesValue(Dictionary<string, object> dataSource)
         {
-            lbxInputs.Items.Clear();
+            //dgvInputs.Items.Clear();
 
-            foreach (KeyValuePair<string, object> x in dataSource)
-                lbxInputs.Items.Add($"{x.Key}\t{x.Value}");
+            //lock (lockObject)
+            //{
+            //    foreach (KeyValuePair<string, object> x in dataSource)
+            //        dgvInputs.Items.Add($"{x.Key}\t{x.Value}");
+            //}
         }
 
         /// <summary>
@@ -164,7 +186,7 @@ namespace EthercatByAds.Tests
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
-            await Ads.Initialize(AsmNetAddress, Port, 100, 10000, AiPath, AoPath, DiPath, DoPath, DelimiterChar);
+            await Ads.Initialize(AsmNetAddress, Port, PollingTime, 10000, AiPath, AoPath, DiPath, DoPath, DelimiterChar);
 
             updateTask.Start();
             uiTask = new Task(async () =>

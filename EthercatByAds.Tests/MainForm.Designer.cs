@@ -33,13 +33,14 @@ namespace EthercatByAds.Tests
             this.lblResourceName = new UserInterface.Controls.LabelControl();
             this.ledStatus = new UserInterface.Controls.LedControl();
             this.lblReasonOfFailure = new UserInterface.Controls.LabelControl();
-            this.lbxInputs = new System.Windows.Forms.ListBox();
+            this.dgvInputs = new System.Windows.Forms.DataGridView();
             this.cbxOutputNames = new System.Windows.Forms.ComboBox();
             this.btnWrite = new UserInterface.Controls.ButtonControl();
             this.nudAnalogValue = new System.Windows.Forms.NumericUpDown();
             this.labelControl1 = new UserInterface.Controls.LabelControl();
             this.labelControl2 = new UserInterface.Controls.LabelControl();
             this.chbValue = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInputs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnalogValue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,16 +59,16 @@ namespace EthercatByAds.Tests
             // 
             this.lblResourceName.AutoSize = true;
             this.lblResourceName.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F);
-            this.lblResourceName.Location = new System.Drawing.Point(14, 9);
+            this.lblResourceName.Location = new System.Drawing.Point(8, 9);
             this.lblResourceName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblResourceName.Name = "lblResourceName";
-            this.lblResourceName.Size = new System.Drawing.Size(199, 20);
+            this.lblResourceName.Size = new System.Drawing.Size(179, 20);
             this.lblResourceName.TabIndex = 1;
-            this.lblResourceName.Text = "169.254.174.61.1.1:851";
+            this.lblResourceName.Text = "5.112.56.172.1.1:851";
             // 
             // ledStatus
             // 
-            this.ledStatus.Location = new System.Drawing.Point(758, 9);
+            this.ledStatus.Location = new System.Drawing.Point(758, 7);
             this.ledStatus.Margin = new System.Windows.Forms.Padding(5);
             this.ledStatus.Name = "ledStatus";
             this.ledStatus.On = true;
@@ -85,21 +86,20 @@ namespace EthercatByAds.Tests
             this.lblReasonOfFailure.Size = new System.Drawing.Size(0, 15);
             this.lblReasonOfFailure.TabIndex = 3;
             // 
-            // lbxInputs
+            // dgvInputs
             // 
-            this.lbxInputs.FormattingEnabled = true;
-            this.lbxInputs.ItemHeight = 20;
-            this.lbxInputs.Location = new System.Drawing.Point(18, 95);
-            this.lbxInputs.Name = "lbxInputs";
-            this.lbxInputs.Size = new System.Drawing.Size(401, 184);
-            this.lbxInputs.TabIndex = 6;
+            this.dgvInputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInputs.Location = new System.Drawing.Point(12, 86);
+            this.dgvInputs.Name = "dgvInputs";
+            this.dgvInputs.Size = new System.Drawing.Size(778, 476);
+            this.dgvInputs.TabIndex = 13;
             // 
             // cbxOutputNames
             // 
             this.cbxOutputNames.FormattingEnabled = true;
-            this.cbxOutputNames.Location = new System.Drawing.Point(425, 95);
+            this.cbxOutputNames.Location = new System.Drawing.Point(12, 47);
             this.cbxOutputNames.Name = "cbxOutputNames";
-            this.cbxOutputNames.Size = new System.Drawing.Size(365, 28);
+            this.cbxOutputNames.Size = new System.Drawing.Size(239, 28);
             this.cbxOutputNames.TabIndex = 7;
             // 
             // btnWrite
@@ -109,9 +109,9 @@ namespace EthercatByAds.Tests
             this.btnWrite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWrite.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWrite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnWrite.Location = new System.Drawing.Point(425, 247);
+            this.btnWrite.Location = new System.Drawing.Point(644, 44);
             this.btnWrite.Name = "btnWrite";
-            this.btnWrite.Size = new System.Drawing.Size(365, 32);
+            this.btnWrite.Size = new System.Drawing.Size(146, 32);
             this.btnWrite.TabIndex = 8;
             this.btnWrite.Text = "Write to PLC";
             this.btnWrite.UseVisualStyleBackColor = false;
@@ -120,7 +120,7 @@ namespace EthercatByAds.Tests
             // nudAnalogValue
             // 
             this.nudAnalogValue.DecimalPlaces = 3;
-            this.nudAnalogValue.Location = new System.Drawing.Point(664, 129);
+            this.nudAnalogValue.Location = new System.Drawing.Point(374, 48);
             this.nudAnalogValue.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -134,7 +134,7 @@ namespace EthercatByAds.Tests
             // 
             this.labelControl1.AutoSize = true;
             this.labelControl1.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F);
-            this.labelControl1.Location = new System.Drawing.Point(425, 131);
+            this.labelControl1.Location = new System.Drawing.Point(257, 50);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(111, 20);
             this.labelControl1.TabIndex = 10;
@@ -144,7 +144,7 @@ namespace EthercatByAds.Tests
             // 
             this.labelControl2.AutoSize = true;
             this.labelControl2.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F);
-            this.labelControl2.Location = new System.Drawing.Point(425, 179);
+            this.labelControl2.Location = new System.Drawing.Point(506, 50);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(108, 20);
             this.labelControl2.TabIndex = 11;
@@ -153,7 +153,7 @@ namespace EthercatByAds.Tests
             // chbValue
             // 
             this.chbValue.AutoSize = true;
-            this.chbValue.Location = new System.Drawing.Point(664, 178);
+            this.chbValue.Location = new System.Drawing.Point(623, 56);
             this.chbValue.Name = "chbValue";
             this.chbValue.Size = new System.Drawing.Size(15, 14);
             this.chbValue.TabIndex = 12;
@@ -163,14 +163,14 @@ namespace EthercatByAds.Tests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 301);
+            this.ClientSize = new System.Drawing.Size(804, 574);
+            this.Controls.Add(this.dgvInputs);
             this.Controls.Add(this.chbValue);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.nudAnalogValue);
             this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.cbxOutputNames);
-            this.Controls.Add(this.lbxInputs);
             this.Controls.Add(this.lblReasonOfFailure);
             this.Controls.Add(this.lblResourceStatus);
             this.Controls.Add(this.lblResourceName);
@@ -182,6 +182,7 @@ namespace EthercatByAds.Tests
             this.Text = "EtherCAT test application";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInputs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnalogValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,7 +195,7 @@ namespace EthercatByAds.Tests
         private UserInterface.Controls.LabelControl lblResourceName;
         private UserInterface.Controls.LabelControl lblResourceStatus;
         private UserInterface.Controls.LabelControl lblReasonOfFailure;
-        private System.Windows.Forms.ListBox lbxInputs;
+        private System.Windows.Forms.DataGridView dgvInputs;
         private System.Windows.Forms.ComboBox cbxOutputNames;
         private UserInterface.Controls.ButtonControl btnWrite;
         private System.Windows.Forms.NumericUpDown nudAnalogValue;
