@@ -1,4 +1,5 @@
-﻿using IO;
+﻿using Diagnostic;
+using IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,8 @@ namespace EthercatByAds
                 string[] text = await ReadFileAsync(path);
                 channels = ParseFile(text, delimiter);
             }
+            else
+                await Logger.ErrorAsync($"File specified at '{path}' does not found");
 
             return channels;
         }

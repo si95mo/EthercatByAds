@@ -1,9 +1,14 @@
 ﻿Imports EthercatByAds
 
 ''' <summary>
-''' Ads DLL example application
+''' Ads DLL example application in VB
 ''' </summary>
 Module Program
+    ''' <summary>
+    ''' The AMS net id address. Leave empty to connect to a local ADS server, otherwise specify the in the correct route
+    ''' </summary>
+    Const AmsNetId As String = ""
+
     ''' <summary>
     ''' Application entry-point
     ''' </summary>
@@ -11,42 +16,38 @@ Module Program
         Console.WriteLine($"{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Start{Environment.NewLine}")
 
         Try
-            '' ******** Initialization of the Ads communication - local amsnet id ********
-            Dim initResult As Boolean = Ads.Initialize("169.254.174.61.1.1", 851).Result
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Initialization result: {initResult}")
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Communication in error: {Ads.IsInError}")
+            '' Initialization
+            Dim initialized As Boolean = Ads.Initialize(AmsNetId, 851).Result
+            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Initialization done: {initialized}")
             If Ads.IsInError Then
+                Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Communication in error")
                 Console.WriteLine($"{vbTab}{vbTab}>> Reason of failure: {Ads.ReasonOfFailure}")
             End If
 
-            '' ******** Example of write operations - method overloads ********
-            Dim digitalWriteResult As Boolean = Ads.Write("FirstDigitalOutput", True) '' Digital write - the return value is the succeeded status
-            digitalWriteResult = digitalWriteResult And Ads.Write("SecondDigitalOutput", True)
-            Console.WriteLine($"{vbTab}{vbTab}>> Digitals write result: {digitalWriteResult}")
+            '' Write operations
+            Dim digitalWriteDone As Boolean = Ads.Write("DigitalOutput", True) '' Digital write - the return value is the succeeded status
+            Console.WriteLine($"{vbTab}{vbTab}>> Digital write done? {digitalWriteDone}")
 
-            Dim analogWriteResult As Boolean = Ads.Write("FirstAnalogOutput", Math.E) '' Analog write - the return value is the succeeded status
-            analogWriteResult = analogWriteResult And Ads.Write("SecondAnalogOutput", Math.PI)
-            Console.WriteLine($"{vbTab}{vbTab}>> Analogs write result: {analogWriteResult}")
+            Dim analogWriteDone As Boolean = Ads.Write("AnalogOutput", Math.PI) '' Analog write - the return value is the succeeded status
+            Console.WriteLine($"{vbTab}{vbTab}>> Analog write done? {analogWriteDone}")
 
-            '' ******** Example of read operations - ByRef variables ********
-            Dim firstDigitalReadValue, secondDigitalReadValue As Boolean
-            Dim firstAnalogReadValue, secondAnalogReadValue As Double
-            Dim digitalReadResult As Boolean = Ads.Read("FirstDigitalInput", firstDigitalReadValue) '' Digital read - the return value is the succeeded status
-            digitalReadResult = digitalReadResult And Ads.Read("SecondDigitalInput", secondDigitalReadValue)
+            '' Read operations
+            Dim digitalReadValue As Boolean
+            Dim firstAnalogReadValue As Double
 
-            Dim analogReadResult As Boolean = Ads.Read("FirstAnalogInput", firstAnalogReadValue) '' Analog read - the return value is the succeeded status
-            analogReadResult = analogReadResult And Ads.Read("SecondAnalogInput", secondAnalogReadValue)
+            Dim digitalReadDone As Boolean = Ads.Read("DigitalInput", digitalReadValue) '' Digital read - the return value is the succeeded status. The read value is inside the variable
+            Dim analogReadDone As Boolean = Ads.Read("AnalogInput", firstAnalogReadValue) '' Analog read - the return value is the succeeded status. The read value is inside the variable
 
-            '' Value read from the PLC
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Digitals read value: {firstDigitalReadValue}; {secondDigitalReadValue}")
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Analogs read value: {firstAnalogReadValue}; {secondAnalogReadValue}")
+            '' Value read from the ADS server
+            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Digital read value: {digitalReadValue}")
+            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Analog read value: {firstAnalogReadValue}")
         Catch ex As Exception
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Error occurred: {Environment.NewLine}{ex}")
+            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Error occurred: {Environment.NewLine}{vbTab}{vbTab}>> {ex.Message}")
         End Try
 
         Console.WriteLine($"{Environment.NewLine}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> End{Environment.NewLine}")
 
-        '' ******** Communication stop ********
+        '' End of communication
         Dim stopResult As Boolean = Ads.Stop()
         Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Stop result: {stopResult}")
 

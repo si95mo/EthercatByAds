@@ -51,7 +51,7 @@ namespace EthercatByAds
         /// This method is an asynchronous <see cref="Task{TResult}"/> so, in order to get the result,
         /// it should be awaited (or <see cref="Task{TResult}.Result"/> should be used)
         /// </remarks>
-        /// <param name="asmNetAddress">The PLC's ASM net address</param>
+        /// <param name="amsNetAddress">The PLC's AMS net address</param>
         /// <param name="port">The port number</param>
         /// <param name="pollingInterval">The polling interval (in milliseconds)</param>
         /// <param name="reconnnectionInterval">The reconnection interval between each attempt (in milliseconds)</param>
@@ -64,41 +64,62 @@ namespace EthercatByAds
         /// The (async) initialization <see cref="Task{TResult}"/> (in which the <see cref="Task"/>'s result
         /// will be <see langword="true"/> if the initialization completed successfully, <see langword="false"/> otherwise)
         /// </returns>
-        public static async Task<bool> Initialize(string asmNetAddress, int port, int pollingInterval = 100, int reconnnectionInterval = 10000,
+        public static async Task<bool> Initialize(string amsNetAddress, int port, int pollingInterval = 100, int reconnnectionInterval = 10000,
             string analogInputsPath = "analog_inputs.csv", string analogOutputsPath = "analog_outputs.csv", string digitalInputsPath = "digital_inputs.csv",
             string digitalOutputsPath = "digital_outputs.csv", char delimiter = ',')
         {
-            // **** Logger initialization
+            #region Logger initialization
+
             Logger.Initialize();
 
-            // **** Resource initialization
-            resource = new TwincatResource("TwincatByAdsResource", asmNetAddress, port, pollingInterval);
+            #endregion Logger initialization
+
+            #region Resource initialization
+
+            if (amsNetAddress.CompareTo(string.Empty) != 0)
+                resource = new TwincatResource("TwincatByAdsResource", amsNetAddress, port, pollingInterval);
+            else
+                resource = new TwincatResource("TwincatByAdsResource", port, pollingInterval);
+
             resource.Status.ValueChanged += Status_ValueChanged;
             await Logger.InfoAsync($"Ads communication initialized");
 
-            // **** Read and parse the channels configuration file
-            // Analog inputs
+            #endregion Resource initialization
+
+            #region Read and parse the channels configuration file
+
+            #region Analog inputs
+
             List<ChannelEntry> channelEntries = await Parser.ReadAndParseFile(analogInputsPath, delimiter);
             if (channelEntries != null)
                 channelEntries.ForEach((x) => new TwincatAnalogInput(x.ChannelCode, x.VariableName, resource));
             else
                 HandleError("Analog inputs file not found");
 
-            // Analog outputs
+            #endregion Analog inputs
+
+            #region Analog outputs
+
             channelEntries = await Parser.ReadAndParseFile(analogOutputsPath, delimiter);
             if (channelEntries != null)
                 channelEntries.ForEach((x) => new TwincatAnalogOutput(x.ChannelCode, x.VariableName, resource));
             else
                 HandleError("Analog outputs file not found");
 
-            // Digital inputs
+            #endregion Analog outputs
+
+            #region Digital inputs
+
             channelEntries = await Parser.ReadAndParseFile(digitalInputsPath, delimiter);
             if (channelEntries != null)
                 channelEntries.ForEach((x) => new TwincatDigitalInput(x.ChannelCode, x.VariableName, resource));
             else
                 HandleError("Digital inputs file not found");
 
-            // Digital outputs
+            #endregion Digital inputs
+
+            #region Digital outputs
+
             channelEntries = await Parser.ReadAndParseFile(digitalOutputsPath, delimiter);
             if (channelEntries != null)
                 channelEntries.ForEach((x) => new TwincatDigitalOutput(x.ChannelCode, x.VariableName, resource));
@@ -107,11 +128,21 @@ namespace EthercatByAds
 
             await Logger.InfoAsync($"Channels created. A total of {resource.Channels.Count} channel(s) added");
 
-            // **** Resource start
+            #endregion Digital outputs
+
+            #endregion Read and parse the channels configuration file
+
+            #region Resource start
+
             await resource.Start();
 
-            // **** Reconnecting task creation
+            #endregion Resource start
+
+            #region Reconnecting task creation
+
             CreateNewReconnectingTask(reconnnectionInterval).Start();
+
+            #endregion Reconnecting task creation
 
             Initialized = resource.Status.Value == ResourceStatus.Executing;
             return Initialized;

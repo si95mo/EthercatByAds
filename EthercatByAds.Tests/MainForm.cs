@@ -11,7 +11,8 @@ namespace EthercatByAds.Tests
     public partial class MainForm : Form
     {
         // Twincat connection
-        private const string AsmNetAddress = "5.112.56.172.1.1";
+        //private const string AsmNetAddress = "5.112.56.172.1.1"; // CX connected, physical route
+        private const string AsmNetAddress = ""; // Local ads server
 
         private const int Port = 851;
 
@@ -26,7 +27,7 @@ namespace EthercatByAds.Tests
         private const char DelimiterChar = ',';
 
         // Polling time
-        private const int PollingTime = 100;
+        private const int PollingTime = 10;
 
         // I/O variable names
         private List<string> aiInputNames = new List<string>(), diInputNames = new List<string>();

@@ -1,19 +1,19 @@
 ﻿namespace EthercatByAds
 {
     /// <summary>
-    /// Describe a channel read from the configuration file
+    /// Describe a channel that has been read from the configuration file
     /// </summary>
     internal class ChannelEntry
     {
         /// <summary>
         /// The channel code (high level name)
         /// </summary>
-        internal string ChannelCode { get; set; } = "";
+        internal string ChannelCode { get; set; } = string.Empty;
 
         /// <summary>
         /// The PLC variable name (low level)
         /// </summary>
-        internal string VariableName { get; set; } = "";
+        internal string VariableName { get; set; } = string.Empty;
 
         /// <summary>
         /// Create a new entry of <see cref="ChannelEntry"/>
