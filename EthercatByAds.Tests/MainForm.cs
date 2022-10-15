@@ -26,17 +26,17 @@ namespace EthercatByAds.Tests
         private const char DelimiterChar = ',';
 
         // Polling time
-        private const int PollingTime = 10;
+        private const int PollingTime = 100;
 
         // I/O variable names
-        private List<string> inputNames = new List<string>();
+        private List<string> aiInputNames = new List<string>(), diInputNames = new List<string>();
 
-        private List<string> outputNames = new List<string>();
+        private List<string> aoOutputNames = new List<string>(), doOutputNames = new List<string>();
+
+        private Dictionary<string, object> dataSource = new Dictionary<string, object>();
 
         // Tasks
-        private Task updateTask;
         private Task uiTask;
-        private object lockObject = new object();
 
         public MainForm()
         {
@@ -46,63 +46,83 @@ namespace EthercatByAds.Tests
 
             GetVariableNames();
 
+            List<string> outputs = new List<string>();
+            outputs.AddRange(aoOutputNames);
+            outputs.AddRange(doOutputNames);
             BindingSource bs = new BindingSource
             {
-                DataSource = outputNames
+                DataSource = outputs
             };
             cbxOutputNames.DataSource = bs;
-            cbxOutputNames.SelectedIndex = 0;
+            if (cbxOutputNames.Items.Count > 0)
+                cbxOutputNames.SelectedIndex = 0;
+        }
 
-            // Started inside load event
-            updateTask = new Task(async () =>
+        /// <summary>
+        /// Read the Ads variables
+        /// </summary>
+        /// <param name="dataSource"></param>
+        private void ReadVariables()
+        {
+            object value;
+
+            foreach (string inputName in aiInputNames)
+            {
+                if (inputName.CompareTo(string.Empty) != 0)
                 {
-                    Dictionary<string, object> dataSource = new Dictionary<string, object>();
-                    object value;
-                    Action initializeDataGridView = new Action(() =>
-                        {
+                    Ads.Read(inputName, out double localValue);
+                    value = localValue;
 
-                            dgvInputs.DataSource = (from d in dataSource orderby d.Key select new { d.Key, d.Value }).ToList();
-                            dgvInputs.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                            dgvInputs.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            dgvInputs.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        }
-                    );
-
-                    if (!InvokeRequired)
-                        initializeDataGridView();
+                    if (!dataSource.ContainsKey(inputName))
+                        dataSource.Add(inputName, value);
                     else
-                        BeginInvoke(initializeDataGridView);
-
-                    while (true)
-                    {
-                        foreach (string inputName in inputNames)
-                        {
-                            if (inputName.Contains("Digital"))
-                            {
-                                Ads.Read(inputName, out bool localValue);
-                                value = localValue;
-                            }
-                            else
-                            {
-                                Ads.Read(inputName, out double localValue);
-                                value = localValue;
-                            }
-
-                            if (!dataSource.ContainsKey(inputName))
-                                dataSource.Add(inputName, value);
-                            else
-                                dataSource[inputName] = value;
-                        }
-
-                        //if (!InvokeRequired)
-                        //    UpdateVariablesValue(dataSource);
-                        //else
-                        //    BeginInvoke(new Action(() => UpdateVariablesValue(dataSource)));
-
-                        await Task.Delay(2000);
-                    }
+                        dataSource[inputName] = value;
                 }
-            );
+            }
+
+            foreach (string inputName in aoOutputNames)
+            {
+                if (inputName.CompareTo(string.Empty) != 0)
+                {
+                    Ads.Read(inputName, out double localValue);
+                    value = localValue;
+
+                    if (!dataSource.ContainsKey(inputName))
+                        dataSource.Add(inputName, value);
+                    else
+                        dataSource[inputName] = value;
+                }
+            }
+
+            foreach (string inputName in diInputNames)
+            {
+                if (inputName.CompareTo(string.Empty) != 0)
+                {
+                    Ads.Read(inputName, out bool localValue);
+                    value = localValue;
+
+                    if (!dataSource.ContainsKey(inputName))
+                        dataSource.Add(inputName, value);
+                    else
+                        dataSource[inputName] = value;
+                }
+            }
+
+            foreach (string inputName in doOutputNames)
+            {
+                if (inputName.CompareTo(string.Empty) != 0)
+                {
+                    Ads.Read(inputName, out bool localValue);
+                    value = localValue;
+
+                    if (!dataSource.ContainsKey(inputName))
+                        dataSource.Add(inputName, value);
+                    else
+                        dataSource[inputName] = value;
+                }
+            }
+
+            dgvInputs.DataSource = (from d in dataSource where d.Key.CompareTo(string.Empty) != 0 orderby d.Key select new { d.Key, d.Value }).ToList();
         }
 
         #region Methods
@@ -115,32 +135,21 @@ namespace EthercatByAds.Tests
         {
             string[] aiText = File.ReadAllLines(AiPath).Skip(1).ToArray(); // Remove headers
             string[] diText = File.ReadAllLines(DiPath).Skip(1).ToArray();
-            string[] inputs = aiText.Concat(diText).ToArray();
 
             string[] aoText = File.ReadAllLines(AoPath).Skip(1).ToArray();
             string[] doText = File.ReadAllLines(DoPath).Skip(1).ToArray();
-            string[] outputs = aoText.Concat(doText).ToArray();
 
-            for (int i = 0; i < inputs.Length; i++)
-                inputNames.Add(inputs[i].Split(DelimiterChar)[0].Trim());
+            for (int i = 0; i < aiText.Length; i++)
+                aiInputNames.Add(aiText[i].Split(DelimiterChar)[0].Trim());
 
-            for (int i = 0; i < outputs.Length; i++)
-                outputNames.Add(outputs[i].Split(DelimiterChar)[0].Trim());
-        }
+            for (int i = 0; i < aoText.Length; i++)
+                aoOutputNames.Add(aoText[i].Split(DelimiterChar)[0].Trim());
 
-        /// <summary>
-        /// Update the variables value related UI
-        /// </summary>
-        /// <param name="dataSource">The data source from which get the values</param>
-        private void UpdateVariablesValue(Dictionary<string, object> dataSource)
-        {
-            //dgvInputs.Items.Clear();
+            for (int i = 0; i < diText.Length; i++)
+                diInputNames.Add(diText[i].Split(DelimiterChar)[0].Trim());
 
-            //lock (lockObject)
-            //{
-            //    foreach (KeyValuePair<string, object> x in dataSource)
-            //        dgvInputs.Items.Add($"{x.Key}\t{x.Value}");
-            //}
+            for (int i = 0; i < doText.Length; i++)
+                doOutputNames.Add(doText[i].Split(DelimiterChar)[0].Trim());
         }
 
         /// <summary>
@@ -188,7 +197,13 @@ namespace EthercatByAds.Tests
         {
             await Ads.Initialize(AsmNetAddress, Port, PollingTime, 10000, AiPath, AoPath, DiPath, DoPath, DelimiterChar);
 
-            updateTask.Start();
+            dgvInputs.DataSource = (from d in dataSource where d.Key.CompareTo(string.Empty) != 0 orderby d.Key select new { d.Key, d.Value }).ToList();
+            dgvInputs.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvInputs.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInputs.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            ReadVariables();
+
             uiTask = new Task(async () =>
                 {
                     while (true)
@@ -216,6 +231,27 @@ namespace EthercatByAds.Tests
                 else
                     Ads.Write(channelName, (double)nudAnalogValue.Value);
             }
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            ReadVariables();
+        }
+
+        private void DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridView grid = sender as DataGridView;
+            string rowIndex = (e.RowIndex + 1).ToString();
+
+            StringFormat centerFormat = new StringFormat()
+            {
+                // Right alignment might actually make more sense for numbers
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            Rectangle headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIndex, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

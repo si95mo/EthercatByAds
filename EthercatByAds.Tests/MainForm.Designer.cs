@@ -40,6 +40,7 @@ namespace EthercatByAds.Tests
             this.labelControl1 = new UserInterface.Controls.LabelControl();
             this.labelControl2 = new UserInterface.Controls.LabelControl();
             this.chbValue = new System.Windows.Forms.CheckBox();
+            this.btnRefresh = new UserInterface.Controls.ButtonControl();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInputs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnalogValue)).BeginInit();
             this.SuspendLayout();
@@ -91,8 +92,9 @@ namespace EthercatByAds.Tests
             this.dgvInputs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInputs.Location = new System.Drawing.Point(12, 86);
             this.dgvInputs.Name = "dgvInputs";
-            this.dgvInputs.Size = new System.Drawing.Size(778, 476);
+            this.dgvInputs.Size = new System.Drawing.Size(778, 455);
             this.dgvInputs.TabIndex = 13;
+            this.dgvInputs.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DataGridView_RowPostPaint);
             // 
             // cbxOutputNames
             // 
@@ -159,11 +161,27 @@ namespace EthercatByAds.Tests
             this.chbValue.TabIndex = 12;
             this.chbValue.UseVisualStyleBackColor = true;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnRefresh.Location = new System.Drawing.Point(644, 547);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(146, 32);
+            this.btnRefresh.TabIndex = 14;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 574);
+            this.ClientSize = new System.Drawing.Size(804, 591);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dgvInputs);
             this.Controls.Add(this.chbValue);
             this.Controls.Add(this.labelControl2);
@@ -202,6 +220,7 @@ namespace EthercatByAds.Tests
         private UserInterface.Controls.LabelControl labelControl1;
         private UserInterface.Controls.LabelControl labelControl2;
         private System.Windows.Forms.CheckBox chbValue;
+        private UserInterface.Controls.ButtonControl btnRefresh;
     }
 }
 

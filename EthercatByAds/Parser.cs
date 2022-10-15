@@ -65,7 +65,8 @@ namespace EthercatByAds
                 splittedLine = text[i].Split(delimiter);
                 channelEntry = new ChannelEntry(splittedLine[0].Trim(), splittedLine[1].Trim());
 
-                channels.Add(channelEntry);
+                if (channelEntry.ChannelCode.CompareTo(string.Empty) != 0)
+                    channels.Add(channelEntry);
             }
 
             return channels;
