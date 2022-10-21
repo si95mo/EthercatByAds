@@ -1,0 +1,586 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Parameters</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Parameters.BoolParameter">
+            <summary>
+            Implement a bool parameter.
+            See also <see cref="T:Core.Parameters.Parameter`1"/> and <see cref="T:Core.Parameters.IParameter`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.BoolParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.BoolParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.BoolParameter.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.BoolParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.BoolParameter.#ctor(System.String,System.Boolean)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.BoolParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="M:Core.Parameters.BoolParameter.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+        <member name="T:Core.Parameters.DifferenceParameter">
+            <summary>
+            Implement a <see cref="T:Core.Parameters.NumericParameter"/> that is the difference of 2 <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.DifferenceParameter.#ctor(Core.Parameters.NumericParameter,Core.Parameters.NumericParameter)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.DifferenceParameter"/>
+            </summary>
+            <param name="firstParameter">The first <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <param name="secondParameter">The second <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <remarks>The value will be <paramref name="firstParameter"/> - <paramref name="secondParameter"/></remarks>
+        </member>
+        <member name="T:Core.Parameters.DivisionParameter">
+            <summary>
+            Implement a <see cref="T:Core.Parameters.NumericParameter"/> that is the division of 2 <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+            <remarks>If a division by 0 is done at run-time, <see cref="!:NumericParameter.Value"/> of the instance
+            should be <see cref="F:System.Double.NegativeInfinity"/> or <see cref="F:System.Double.PositiveInfinity"/>. <br/>
+            Consider the using <see cref="M:System.Double.IsNegativeInfinity(System.Double)"/> or <see cref="M:System.Double.IsPositiveInfinity(System.Double)"/>
+            (applies also in caso of <see cref="F:System.Double.NaN"/> used with <see cref="M:System.Double.IsNaN(System.Double)"/>)</remarks>
+        </member>
+        <member name="M:Core.Parameters.DivisionParameter.#ctor(Core.Parameters.NumericParameter,Core.Parameters.NumericParameter)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.DivisionParameter"/>
+            </summary>
+            <param name="firstParameter">The first <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <param name="secondParameter">The second <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <remarks>The value will be <paramref name="firstParameter"/> - <paramref name="secondParameter"/></remarks>
+        </member>
+        <member name="T:Core.Parameters.EnumParameter`1">
+            <summary>
+            Implement an enum parameter.
+            See also <see cref="T:Core.Parameters.Parameter`1"/>, <see cref="T:Core.Parameters.IParameter"/>
+            and <see cref="T:Core.Parameters.IEnumParameter`1"/>
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum"/> type of the wrapped parameter</typeparam>
+        </member>
+        <member name="P:Core.Parameters.EnumParameter`1.ValueAsInt">
+            <summary>
+            The <see cref="!:EnumParameter&lt;T&gt;.Value"/> value as <see cref="T:System.Int32"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.EnumParameter`1.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.EnumParameter`1.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.EnumParameter`1.#ctor(System.String,`0)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="M:Core.Parameters.EnumParameter`1.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+        <member name="T:Core.Parameters.IBoolParameter">
+            <summary>
+            Describe a generic bool parameter
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.IEnumParameter">
+            <summary>
+            An enum parameter
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.IEnumParameter`1">
+            <summary>
+            Describe a generic enum parameter
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum"/> type</typeparam>
+        </member>
+        <member name="T:Core.Parameters.INumericParameter">
+            <summary>
+            Describe a generic numeric parameter
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.INumericParameter.ValueAsInt">
+            <summary>
+            The <see cref="P:Core.Parameters.IParameter`1.Value"/> as <see cref="T:System.Int32"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.INumericParameter.ValueAsFloat">
+            <summary>
+            The <see cref="P:Core.Parameters.IParameter`1.Value"/> as <see cref="T:System.Single"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.INumericParameter.ValueAsByte">
+            <summary>
+            The <see cref="P:Core.Parameters.IParameter`1.Value"/> as <see cref="T:System.Byte"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.INumericParameter.ValueAsByteArray">
+            <summary>
+            The <see cref="P:Core.Parameters.IParameter`1.Value"/> as a <see cref="T:System.Byte"/> array
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.IParameter">
+            <summary>
+            Describe a generic parameter
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.IParameter.ConnectTo(Core.IProperty,Core.IConverter)">
+            <summary>
+            Connect a <see cref="T:Core.IProperty"/> to propagate the value
+            </summary>
+            <param name="property">The <see cref="T:Core.IProperty"/> to connect</param>
+            <param name="converter">The <see cref="T:Core.IConverter"/></param>
+        </member>
+        <member name="M:Core.Parameters.IParameter.ConnectTo(Core.IProperty)">
+            <summary>
+            Connect a <see cref="T:Core.IProperty"/> to propagate the value
+            </summary>
+            <param name="property">The <see cref="T:Core.IProperty"/> to connect</param>
+        </member>
+        <member name="E:Core.Parameters.IParameter.ValueChanged">
+            <summary>
+            The value changed event. See <see cref="T:Core.ValueChangedEventArgs"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.IParameter.Description">
+            <summary>
+            The <see cref="T:Core.Parameters.IParameter"/> description
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.IParameter`1">
+            <summary>
+            Describe a generic parameter
+            with a defined type of value
+            </summary>
+            <typeparam name="T">The type of value</typeparam>
+        </member>
+        <member name="P:Core.Parameters.IParameter`1.Value">
+            <summary>
+            The <see cref="T:Core.Parameters.IParameter"/> value
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.IStringParameter">
+            <summary>
+            Describe a generic string parameter
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.ITimeSpanParameter">
+            <summary>
+            Describe a generic time span parameter
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.MultiplicationParameter">
+            <summary>
+            Implement a <see cref="T:Core.Parameters.NumericParameter"/> that is the multiplication of 2 <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.MultiplicationParameter.#ctor(Core.Parameters.NumericParameter,Core.Parameters.NumericParameter)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.MultiplicationParameter"/>
+            </summary>
+            <param name="firstParameter">The first <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <param name="secondParameter">The second <see cref="T:Core.Parameters.NumericParameter"/></param>
+        </member>
+        <member name="T:Core.Parameters.NumericParameter">
+            <summary>
+            Implement a numeric parameter.
+            See also <see cref="T:Core.Parameters.Parameter`1"/> and <see cref="T:Core.Parameters.IParameter`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.NumericParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.NumericParameter.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.NumericParameter.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="format">The format</param>
+            <param name="measureUnit">The measure unit</param>
+        </member>
+        <member name="M:Core.Parameters.NumericParameter.#ctor(System.String,System.Double,System.String,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+            <param name="format">The format</param>
+            <param name="measureUnit">The measure unit</param>
+        </member>
+        <member name="M:Core.Parameters.NumericParameter.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+        <member name="T:Core.Parameters.Parameter`1">
+            <summary>
+            Describe a generic parameter.
+            See also <see cref="T:Core.Parameters.IParameter`1"/>
+            </summary>
+            <typeparam name="T">The type of the <see cref="T:Core.Parameters.Parameter`1"/></typeparam>
+        </member>
+        <member name="F:Core.Parameters.Parameter`1.subscribers">
+            <summary>
+            The subscribers
+            </summary>
+        </member>
+        <member name="F:Core.Parameters.Parameter`1.converter">
+            <summary>
+            The converter
+            </summary>
+        </member>
+        <member name="F:Core.Parameters.Parameter`1.eventLock">
+            <summary>
+            The object lock
+            </summary>
+        </member>
+        <member name="F:Core.Parameters.Parameter`1.ValueChangedHandler">
+            <summary>
+            The value changed event handler
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.#ctor">
+            <summary>
+            Initialize the class attributes with
+            default parameters
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.#ctor(System.String)">
+            <summary>
+            Initialize the class attributes with
+            default parameters
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.Value">
+            <summary>
+            The <see cref="T:Core.Parameters.Parameter`1"/> value
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.ValueAsObject">
+            <summary>
+            The <see cref="T:Core.Parameters.Parameter`1"/> value as <see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.Type">
+            <summary>
+            The <see cref="T:System.Type"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.MeasureUnit">
+            <summary>
+            The <see cref="T:Core.Parameters.Parameter`1"/> measure unit
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.Format">
+            <summary>
+            The <see cref="T:Core.Parameters.Parameter`1"/> format
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.Parameter`1.Code">
+            <summary>
+            The <see cref="T:Core.Parameters.Parameter`1"/> code
+            </summary>
+        </member>
+        <member name="E:Core.Parameters.Parameter`1.ValueChanged">
+            <summary>
+            The <see cref="E:Core.Parameters.Parameter`1.ValueChanged"/> event handler
+            for the <see cref="P:Core.Parameters.Parameter`1.Value"/> property
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.OnValueChanged(Core.ValueChangedEventArgs)">
+            <summary>
+            On value changed event
+            </summary>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.ConnectTo(Core.IProperty)">
+            <summary>
+            Connects an <see cref="T:Core.IProperty`1"/> to another
+            in order to propagate its value;
+            </summary>
+            <param name="property">The destination <see cref="T:Core.IProperty`1"/></param>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.ConnectTo(Core.IProperty,Core.IConverter)">
+            <summary>
+            Connects an <see cref="T:Core.Parameters.IParameter"/> to another
+            in order to propagate its value converted.
+            See also <see cref="M:Core.Parameters.Parameter`1.ConnectTo(Core.IProperty)"/>
+            </summary>
+            <param name="channel">The destination <see cref="T:Core.Parameters.IParameter"/></param>
+            <param name="converter">The <see cref="T:Core.IConverter"/></param>
+        </member>
+        <member name="M:Core.Parameters.Parameter`1.PropagateValues(System.Object,Core.ValueChangedEventArgs)">
+            <summary>
+            <see cref="E:Core.Parameters.Parameter`1.ValueChanged"/> event handler that manages
+            the propagation of the values to subscribers.
+            See <see cref="M:Core.Parameters.Parameter`1.ConnectTo(Core.IProperty)"/>
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="T:Core.Parameters.StringParameter">
+            <summary>
+            Implement a string parameter.
+            See also <see cref="T:Core.Parameters.Parameter`1"/> and <see cref="T:Core.Parameters.IParameter`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.StringParameter.ValueAsDouble">
+            <summary>
+            The <see cref="!:Value"/> as <see cref="T:System.Double"/>
+            </summary>
+            <remarks>If the conversion is not possible, then 0 is returned!</remarks>
+        </member>
+        <member name="P:Core.Parameters.StringParameter.ValueAsFloat">
+            <summary>
+            The <see cref="!:Value"/> as <see cref="T:System.Single"/>
+            </summary>
+            <remarks>If the conversion is not possible, then 0 is returned!</remarks>
+        </member>
+        <member name="P:Core.Parameters.StringParameter.ValueAsInt">
+            <summary>
+            The <see cref="!:Value"/> as <see cref="T:System.Int32"/>
+            </summary>
+            <remarks>If the conversion is not possible, then 0 is returned!</remarks>
+        </member>
+        <member name="P:Core.Parameters.StringParameter.ValueAsBool">
+            <summary>
+            The <see cref="!:Value"/> as <see cref="T:System.Boolean"/>
+            </summary>
+            <remarks>If the conversion is not possible, then <see langword="false"/> is returned!</remarks>
+        </member>
+        <member name="M:Core.Parameters.StringParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.StringParameter.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.StringParameter.#ctor(System.String,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.StringParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="M:Core.Parameters.StringParameter.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+        <member name="T:Core.Parameters.SumParameter">
+            <summary>
+            Implement a <see cref="T:Core.Parameters.NumericParameter"/> that is the sum of 2 <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.SumParameter.#ctor(Core.Parameters.NumericParameter,Core.Parameters.NumericParameter)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.SumParameter"/>
+            </summary>
+            <param name="firstParameter">The first <see cref="T:Core.Parameters.NumericParameter"/></param>
+            <param name="secondParameter">The second <see cref="T:Core.Parameters.NumericParameter"/></param>
+        </member>
+        <member name="T:Core.Parameters.TimeSpanParameter">
+            <summary>
+            Implement a time span parameter.
+            See also <see cref="T:Core.Parameters.Parameter`1"/> and <see cref="T:Core.Parameters.IParameter`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.TimeSpanParameter.ValueAsSeconds">
+            <summary>
+            Represent the current <see cref="T:System.TimeSpan"/> stored in
+            <see cref="P:Core.Parameters.Parameter`1.Value"/> as seconds
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.TimeSpanParameter.ValueAsMilliseconds">
+            <summary>
+            Represent the current <see cref="T:System.TimeSpan"/> stored in
+            <see cref="P:Core.Parameters.Parameter`1.Value"/> as milliseconds
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.TimeSpanParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TimeSpanParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.TimeSpanParameter.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TimeSpanParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.TimeSpanParameter.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TimeSpanParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="M:Core.Parameters.TimeSpanParameter.#ctor(System.String,System.Double)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TimeSpanParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value (in milliseconds)</param>
+        </member>
+        <member name="M:Core.Parameters.TimeSpanParameter.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+        <member name="T:Core.Parameters.TriggerParameter">
+            <summary>
+            Implement a <see cref="T:Core.Parameters.Parameter`1"/> that represent a trigger
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.#ctor(System.String,System.Boolean,System.TimeSpan)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TriggerParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+            <param name="tOn">The on time of the trigger (as a <see cref="T:System.TimeSpan"/></param>
+            <remarks>
+            The <paramref name="value"/> defines the type of the trigger: if is <see langword="false"/>, then
+            the trigger will be a rising one and if is <see langword="true"/> a falling one
+            </remarks>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.#ctor(System.String,System.Boolean,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TriggerParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+            <param name="tOn">The on time of the trigger (as a <see cref="T:System.TimeSpan"/>)</param>
+            <param name="preTriggerTime">The pre-trigger time (as a <see cref="T:System.TimeSpan"/>)</param>
+            <remarks>
+            The <paramref name="value"/> defines the type of the trigger: if is <see langword="false"/>, then
+            the trigger will be a rising edge one and if is <see langword="true"/> a falling edge one
+            </remarks>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.#ctor(System.String,System.Boolean,System.Int32)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TriggerParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+            <param name="tOn">The on time of the trigger (in milliseconds)</param>
+            <remarks>
+            The <paramref name="value"/> defines the type of the trigger: if is <see langword="false"/>, then
+            the trigger will be a rising one and if is <see langword="true"/> a falling one
+            </remarks>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.TriggerParameter"/> with a rising edge and an on time of 100ms
+            </summary>
+            <remarks>
+            The trigger will be a rising edge one
+            </remarks>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.StartTrigger">
+            <summary>
+            Start the trigger
+            </summary>
+            <returns>The (async) <see cref="T:System.Threading.Tasks.Task"/></returns>
+        </member>
+        <member name="M:Core.Parameters.TriggerParameter.StopTrigger">
+            <summary>
+            Stop the actual trigger generation
+            </summary>
+        </member>
+        <member name="T:Core.Parameters.WaveformParameter">
+            <summary>
+            Implement a waveform <see cref="T:Core.Parameters.Parameter`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.WaveformParameter.Value">
+            <summary>
+            The <see cref="T:Core.Parameters.WaveformParameter"/> value
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.WaveformParameter.ValueAsDouble">
+            <summary>
+            The <see cref="P:Core.Parameters.WaveformParameter.Value"/> as <see cref="T:System.Double"/> (i.e. the mean value of the array)
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.WaveformParameter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.WaveformParameter.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.WaveformParameter.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="format">The format</param>
+            <param name="measureUnit">The measure unit</param>
+        </member>
+        <member name="M:Core.Parameters.WaveformParameter.#ctor(System.String,System.Double[],System.String,System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+            <param name="format">The format</param>
+            <param name="measureUnit">The measure unit</param>
+        </member>
+        <member name="M:Core.Parameters.WaveformParameter.ToString">
+            <summary>
+            Return a description of the object
+            See also <see cref="M:System.Object.ToString"/>
+            </summary>
+            <returns>The description of the object</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Converters</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Converters.AbstractConverter`2">
+            <summary>
+            Define a basic structure for a converter
+            </summary>
+            <typeparam name="TIn">The input type of the value to convert</typeparam>
+            <typeparam name="TOut">The output type of the conversion</typeparam>
+        </member>
+        <member name="P:Core.Converters.AbstractConverter`2.Converter">
+            <summary>
+            The <see cref="T:Core.Converters.AbstractConverter`2"/> <see cref="T:System.Func`2"/>
+            used in conversion
+            </summary>
+        </member>
+        <member name="M:Core.Converters.AbstractConverter`2.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Converters.AbstractConverter`2"/>
+            </summary>
+        </member>
+        <member name="M:Core.Converters.AbstractConverter`2.Execute(`0)">
+            <summary>
+            Execute the conversion
+            </summary>
+            <param name="arg">The argument to convert</param>
+            <returns>The result of the conversion</returns>
+        </member>
+        <member name="M:Core.Converters.AbstractConverter`2.Connect(Core.IProperty,Core.IProperty)">
+            <summary>
+            Connects an <see cref="T:Core.IProperty"/> to another
+            in order to propagate its value;
+            </summary>
+            <param name="sourceParameter">The source <see cref="T:Core.IProperty"/></param>
+            <param name="destinationParameter">The destination <see cref="T:Core.IProperty"/></param>
+        </member>
+        <member name="M:Core.Converters.AbstractConverter`2.PropagateValues(System.Object,Core.ValueChangedEventArgs)">
+            <summary>
+            Connect two objects in order to propagate the converted value
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="T:Core.Converters.BitExtractorConverter">
+            <summary>
+            Implement an <see cref="T:Core.Converters.AbstractConverter`2"/> that
+            extract a single bit from a <see cref="T:System.Double"/>
+            </summary>
+        </member>
+        <member name="M:Core.Converters.BitExtractorConverter.#ctor(System.Int32)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Converters.BitExtractorConverter"/>
+            </summary>
+            <param name="position">The bit position</param>
+        </member>
+        <member name="M:Core.Converters.BitExtractorConverter.ExtractBit(System.Double,System.Int32,System.Int32)">
+            <summary>
+            Extract a specified number of bits from a number, starting from a position
+            </summary>
+            <param name="number">The number</param>
+            <param name="numberOfBits">The number of bits to extract</param>
+            <param name="position">The starting position</param>
+            <returns>The extracted bit</returns>
+        </member>
+        <member name="T:Core.Converters.ExponentialMovingAverageConverter">
+            <summary>
+            Convert the input by applying an exponential moving average. <br/>
+            For reference, see:
+            <see href="https://it.mathworks.com/help/dsp/ug/sliding-window-method-and-exponential-weighting-method.html"/>
+            </summary>
+        </member>
+        <member name="P:Core.Converters.ExponentialMovingAverageConverter.Lambda">
+            <summary>
+            The <see cref="T:Core.Converters.ExponentialMovingAverageConverter"/> forgetting factor
+            </summary>
+        </member>
+        <member name="M:Core.Converters.ExponentialMovingAverageConverter.#ctor(System.Double)">
+            <summary>
+            Initialize a new instance of <see cref="T:Core.Converters.ExponentialMovingAverageConverter"/>
+            </summary>
+            <remarks>If <paramref name="lambda"/> is not between 0 and 1, a value of 0.5 is assigned by default</remarks>
+            <param name="lambda">The forgetting factor (in 0 and 1, inclusive)</param>
+        </member>
+        <member name="M:Core.Converters.ExponentialMovingAverageConverter.MovingAverage">
+            <summary>
+            Calculate the <see cref="T:Core.Converters.ExponentialMovingAverageConverter"/>
+            </summary>
+            <returns>The converted value</returns>
+        </member>
+        <member name="T:Core.Converters.GenericConverter`2">
+            <summary>
+            Describe a generic converter
+            </summary>
+            <typeparam name="TIn">The type of the input</typeparam>
+            <typeparam name="TOut">The type of the output</typeparam>
+        </member>
+        <member name="P:Core.Converters.GenericConverter`2.Converter">
+            <summary>
+            The <see cref="T:Core.Converters.GenericConverter`2"/> <see cref="T:System.Func`2"/>
+            used in conversion
+            </summary>
+        </member>
+        <member name="M:Core.Converters.GenericConverter`2.#ctor(System.Func{`0,`1})">
+            <summary>
+            Initialize a new instance of <see cref="T:Core.Converters.GenericConverter`2"/>
+            </summary>
+            <param name="converter">The conversion <see cref="T:System.Func`2"/></param>
+        </member>
+        <member name="T:Core.Converters.IConverter`2">
+            <summary>
+            Define a generic converter
+            </summary>
+            <typeparam name="TIn">The input type</typeparam>
+            <typeparam name="TOut">The output type</typeparam>
+        </member>
+        <member name="P:Core.Converters.IConverter`2.Converter">
+            <summary>
+            The <see cref="T:Core.IConverter"/> <see cref="T:System.Func`2"/>
+            used in the conversion
+            </summary>
+        </member>
+        <member name="M:Core.Converters.IConverter`2.Execute(`0)">
+            <summary>
+            Execute the conversion
+            </summary>
+            <param name="arg">The argument to convert</param>
+            <returns>The result of the conversion</returns>
+        </member>
+        <member name="P:Core.Converters.LinearInterpolationConverter.X0">
+            <summary>
+            The source parameter first value
+            </summary>
+        </member>
+        <member name="P:Core.Converters.LinearInterpolationConverter.X1">
+            <summary>
+            The source parameter second value
+            </summary>
+        </member>
+        <member name="P:Core.Converters.LinearInterpolationConverter.Y0">
+            <summary>
+            The destination parameter relative first value
+            </summary>
+        </member>
+        <member name="P:Core.Converters.LinearInterpolationConverter.Y1">
+            <summary>
+            The source parameter relative second value
+            </summary>
+        </member>
+        <member name="M:Core.Converters.LinearInterpolationConverter.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Converters.LinearInterpolationConverter"/>
+            </summary>
+            <param name="x0">The source first value</param>
+            <param name="x1">The source second value</param>
+            <param name="y0">The destination first value</param>
+            <param name="y1">The destination second value</param>
+        </member>
+        <member name="M:Core.Converters.LinearInterpolationConverter.InterpolateLinearly">
+            <summary>
+            <see cref="T:System.Func`2"/> that linearly interpolate a value
+            </summary>
+            <returns>The interpolated value</returns>
+        </member>
+        <member name="T:Core.Converters.OnlineMeanConverter">
+            <summary>
+            Implement an <see cref="T:Core.Converters.AbstractConverter`2"/> that perform
+            an online mean based on the input values
+            </summary>
+        </member>
+        <member name="M:Core.Converters.OnlineMeanConverter.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.Converters.OnlineMeanConverter"/>
+            </summary>
+        </member>
+        <member name="M:Core.Converters.OnlineMeanConverter.CalculateOnlineMean(System.Double)">
+            <summary>
+            Calculate the online mean
+            </summary>
+            <param name="x">The value to add to the mean</param>
+        </member>
+        <member name="T:Core.Converters.SimpleMovingAverageConverter">
+            <summary>
+            Convert the input by applying a moving average
+            </summary>
+        </member>
+        <member name="P:Core.Converters.SimpleMovingAverageConverter.WindowSize">
+            <summary>
+            The <see cref="T:Core.Converters.SimpleMovingAverageConverter"/> period
+            </summary>
+        </member>
+        <member name="M:Core.Converters.SimpleMovingAverageConverter.#ctor(System.Int32)">
+            <summary>
+            Initialize a new instance of <see cref="T:Core.Converters.SimpleMovingAverageConverter"/>
+            </summary>
+            <param name="windowSize">The moving average window size</param>
+        </member>
+        <member name="M:Core.Converters.SimpleMovingAverageConverter.MovingAverage(System.Int32)">
+            <summary>
+            Calculate the <see cref="T:Core.Converters.SimpleMovingAverageConverter"/>
+            </summary>
+            <param name="windowSize">The window size</param>
+            <returns>The converted value</returns>
+        </member>
+    </members>
+</doc>

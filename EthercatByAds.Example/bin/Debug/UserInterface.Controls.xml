@@ -1,0 +1,1123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UserInterface.Controls</name>
+    </assembly>
+    <members>
+        <member name="T:UserInterface.Controls.AutomaticActionImage">
+            <summary>
+            Define the type of the <see cref="T:System.Drawing.Image"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.AutomaticActionImage.Execute">
+            <summary>
+            Execute image
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.AutomaticActionImage.Save">
+            <summary>
+            Save image
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.AutomaticActionImage.Load">
+            <summary>
+            Load image
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.AutomaticActionImage.Clear">
+            <summary>
+            Clear image
+            </summary>
+        </member>
+        <member name="E:UserInterface.Controls.BaseAutomaticButton.Click">
+            <summary>
+            The click <see cref="T:System.EventHandler"/>
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.BaseAutomaticButton.ButtonImage">
+            <summary>
+            The <see cref="T:UserInterface.Controls.AutomaticActionImage"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.BaseAutomaticButton.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.BaseAutomaticButton"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.BaseAutomaticButton.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.BaseAutomaticButton.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.BaseAutomaticButton.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.BaseControl">
+            <summary>
+            A base control, used as a base class for create
+            more advanced user interface components
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.BaseControl.value">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.BaseControl.Value">
+            <summary>
+            The <see cref="T:UserInterface.Controls.BaseControl"/> value
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.BaseControl.#ctor">
+            <summary>
+            Initialize the <see cref="T:UserInterface.Controls.BaseControl"/>
+            with default values
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.BaseControl.ToString">
+            <summary>
+            Give an alphabetical representation of the
+            <see cref="T:UserInterface.Controls.BaseControl"/>
+            </summary>
+            <returns>The description of the <see cref="T:UserInterface.Controls.BaseControl"/></returns>
+        </member>
+        <member name="F:UserInterface.Controls.BaseControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.BaseControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.BaseControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ButtonControl">
+            <summary>
+            Implement a button control
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ButtonControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ButtonControl"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.ButtonControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ButtonControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ButtonControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ChannelControl">
+            <summary>
+            Define an <see cref="T:System.Windows.Forms.UserControl"/> for <see cref="T:Hardware.IChannel"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChannelControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ChannelControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChannelControl.#ctor(Hardware.IChannel,System.Windows.Forms.Panel)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ChannelControl"/>
+            </summary>
+            <remarks>
+            It's necessary to pass the <paramref name="parent"/> container as a parameter
+            in order to correctly resize the <see cref="T:UserInterface.Controls.ChannelControl"/>!
+            </remarks>
+            <param name="channel">The <see cref="T:Hardware.IChannel"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.ChannelControl"/> parent <see cref="T:System.Windows.Forms.Panel"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.ChannelControl.AsciiToByte(System.String)">
+            <summary>
+            Convert an ASCII <see cref="T:System.String"/> special characters with the relative <see cref="T:System.Byte"/> representation
+            </summary>
+            <param name="ascii">The ASCII <see cref="T:System.String"/></param>
+            <returns>The converted <see cref="T:System.String"/></returns>
+        </member>
+        <member name="F:UserInterface.Controls.ChannelControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChannelControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ChannelControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ChartControl">
+            <summary>
+            Implement a chart <see cref="T:System.Windows.Forms.UserControl"/> that display the values
+            of a <see cref="T:Core.Parameters.NumericParameter"/> or a <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ChartControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.UpdateChartSeries">
+            <summary>
+            Update the chart series for a <see cref="T:Core.Parameters.NumericParameter"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.UpdateChartSeries(System.Double[])">
+            <summary>
+            Update the chart series for a <see cref="T:Core.Parameters.WaveformParameter"/>
+            </summary>
+            <param name="value">The value</param>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.InitChart(System.String)">
+            <summary>
+            Initialize the chart series
+            </summary>
+            <param name="seriesName">The series name</param>
+        </member>
+        <member name="F:UserInterface.Controls.ChartControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ChartControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.CircularProgressBar.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.CircularProgressBar.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ClockControl">
+            <summary>
+            Represent a clock control for user interfaces
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ClockControl.Now">
+            <summary>
+            The actual <see cref="T:System.DateTime"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ClockControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ClockControl"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.ClockControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ClockControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ClockControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.CloseApplicationControl">
+            <summary>
+            Implement a control for closing an application
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.CloseApplicationControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.CloseApplicationControl"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.CloseApplicationControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.CloseApplicationControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.CloseApplicationControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.Colors">
+            <summary>
+            Provides <see cref="T:System.Drawing.Color"/> constants
+            to use when creating an user interface
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.BackgroundColor">
+            <summary>
+            The background <see cref="T:System.Drawing.Color"/>
+            defined as 0x8A, 0x9D, 0xC7
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Green">
+            <summary>
+            The green <see cref="T:System.Drawing.Color"/>
+            defined as 0xBD, 0xDC, 0x04
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Black">
+            <summary>
+            The black <see cref="T:System.Drawing.Color"/>
+            defined as 0x2F, 0x4F, 0x4F
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Transparent">
+            <summary>
+            The text light <see cref="T:System.Drawing.Color"/>.
+            See <see cref="P:System.Drawing.Color.Transparent"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.TextColorLight">
+            <summary>
+            The light text <see cref="T:System.Drawing.Color"/>
+            defined as 0xFC, 0xEE, 0xDF
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.TextColorDark">
+            <summary>
+            The dark text <see cref="T:System.Drawing.Color"/>
+            defined as 0x2F, 0x4F, 0x4F
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.TextColor">
+            <summary>
+            The text <see cref="T:System.Drawing.Color"/>
+            defined as 0x33, 0x33, 0x33
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Grey">
+            <summary>
+            The gray <see cref="T:System.Drawing.Color"/>
+            defined as 0xC8, 0xC8, 0xC8
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Red">
+            <summary>
+            The red <see cref="T:System.Drawing.Color"/>
+            defined as 0xD2, 0x04, 0x2D
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.LightBlue">
+            <summary>
+            The light blue <see cref="T:System.Drawing.Color"/>
+            defined as 0xDE, 0xE7, 0xF2
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.LightYellow">
+            <summary>
+            The light yellow <see cref="T:System.Drawing.Color"/>
+            defined as 0xFF, 0xFe, 0xED
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Success">
+            <summary>
+            Define the color for success messages
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Info">
+            <summary>
+            Define the color for info messages
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Warning">
+            <summary>
+            Define the color for warning messages
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.Colors.Error">
+            <summary>
+            Define the color for error messages
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ComboControl">
+            <summary>
+            Implement a combo boc control
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.Combo">
+            <summary>
+            The <see cref="T:System.Windows.Forms.ComboBox"/> of <see cref="T:UserInterface.Controls.ComboControl"/>
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.Value">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ComboControl"/> value
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.SelectedItem">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ComboControl"/> selected item
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.SelectedIndex">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ComboControl"/> selected index
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.DataSource">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ComboControl"/> <see cref="P:System.Windows.Forms.ComboBox.DataSource"/>
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.ComboControl.DataBindings">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ComboControl"/> <see cref="T:System.Windows.Forms.ControlBindingsCollection"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ComboControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ComboControl"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.ComboControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ComboControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ComboControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ConditionControl">
+            <summary>
+            Create an <see cref="T:System.Windows.Forms.UserControl"/> for <see cref="T:Core.Conditions.ICondition"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ConditionControl.#ctor(Core.Conditions.ICondition,System.Windows.Forms.Panel)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ConditionControl"/>
+            </summary>
+            <remarks>
+            It's necessary to pass the <paramref name="parent"/> container as a parameter
+            in order to correctly resize the <see cref="T:UserInterface.Controls.ConditionControl"/>!
+            </remarks>
+            <param name="condition">The <see cref="T:Core.Conditions.ICondition"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.ChannelControl"/> parent <see cref="T:System.Windows.Forms.Panel"/></param>
+        </member>
+        <member name="F:UserInterface.Controls.ConditionControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ConditionControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ConditionControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.DataGridControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DataGridControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.DataGridControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.DialogPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DialogPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.DialogPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.DigitalControl">
+            <summary>
+            Define a control for handling digital inputs.
+            See <see cref="T:UserInterface.Controls.BaseControl"/>
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.DigitalControl.Value">
+            <summary>
+            The <see cref="T:UserInterface.Controls.DigitalControl"/> value
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.DigitalControl.ValueChangedHandler">
+            <summary>
+            The value changed event handler
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.DigitalControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.Control_Cick(System.Object,System.EventArgs)">
+            <summary>
+            Handle the click event
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.OnValueChanged(Core.ValueChangedEventArgs)">
+            <summary>
+            On value changed event
+            </summary>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="E:UserInterface.Controls.DigitalControl.ValueChanged">
+            <summary>
+            The <see cref="E:UserInterface.Controls.DigitalControl.ValueChanged"/> event handler
+            for the <see cref="P:UserInterface.Controls.DigitalControl.Value"/> property
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.SetParameter(Core.Parameters.BoolParameter)">
+            <summary>
+            Set the <see cref="T:Core.Parameters.BoolParameter"/> that will be connected to the <see cref="T:UserInterface.Controls.DigitalControl"/>
+            </summary>
+            <param name="parameter">The <see cref="T:Core.Parameters.BoolParameter"/> to connect</param>
+        </member>
+        <member name="F:UserInterface.Controls.DigitalControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.DigitalControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.InstructionControl">
+            <summary>
+            Define an instruction control
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.InstructionControl.#ctor(Instructions.Instruction,Core.Scheduling.InstructionScheduler)">
+            <summary>
+            Create a new instance of the class <see cref="T:UserInterface.Controls.InstructionControl"/>
+            </summary>
+            <param name="instruction">The <see cref="T:Instructions.Instruction"/></param>
+            <param name="scheduler">The <see cref="T:Core.Scheduling.InstructionScheduler"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.InstructionControl.AddElementToCollection(System.Windows.Forms.Label,UserInterface.Controls.BaseControl)">
+            <summary>
+            Add an element to the collection
+            </summary>
+            <param name="lblParam">The <see cref="T:System.Windows.Forms.Label"/></param>
+            <param name="control">The <see cref="T:UserInterface.Controls.BaseControl"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.InstructionControl.BtnAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a <see cref="T:Instructions.Instruction"/> to the <see cref="T:Core.Scheduling.InstructionScheduler"/>
+            <see cref="T:Core.Scheduling.ActionQueue`1"/>
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="F:UserInterface.Controls.InstructionControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.InstructionControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.InstructionControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.LedControl">
+            <summary>
+            Implement a visual LED user control
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.LedControl.Color">
+            <summary>
+            Gets or Sets the color of the LED light
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.LedControl.On">
+            <summary>
+            Gets or Sets whether the light is turned on
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LedControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.LedControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LedControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Handles the on paint event for the <see cref="T:UserInterface.Controls.LedControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LedControl.DrawControl(System.Drawing.Graphics,System.Boolean)">
+            <summary>
+            Renders the control to an image
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LedControl.Blink(System.Int32)">
+            <summary>
+            Causes the <see cref="T:UserInterface.Controls.LedControl"/> to start blinking
+            </summary>
+            <param name="interval">The blinking interval (in milliseconds). Set to 0 to stop</param>
+        </member>
+        <member name="M:UserInterface.Controls.LedControl.StopBlink">
+            <summary>
+            Causes the <see cref="T:UserInterface.Controls.LedControl"/> to stop blinking. <br/>
+            See also <see cref="M:UserInterface.Controls.LedControl.Blink(System.Int32)"/>
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.LoadTestProgramPanel">
+            <summary>
+            Implement a load test program panel
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LoadTestProgramPanel.#ctor(Core.Scheduling.InstructionScheduler,UserInterface.Controls.BaseControl)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.LoadTestProgramPanel"/>
+            </summary>
+            <param name="scheduler">The <see cref="T:Core.Scheduling.InstructionScheduler"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.BaseControl"/> parent</param>
+        </member>
+        <member name="F:UserInterface.Controls.LoadTestProgramPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.LoadTestProgramPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.LoadTestProgramPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.MethodControl">
+            <summary>
+            An user control to graphically visualize an instance
+            of <see cref="T:Core.DataStructures.Method"/> and eventually add it
+            to a <see cref="T:Core.Scheduling.MethodScheduler"/>.
+            See also <see cref="T:System.Windows.Forms.UserControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.#ctor(Core.DataStructures.Method)">
+            <summary>
+            Create a new instance of the class <see cref="T:UserInterface.Controls.MethodControl"/>
+            </summary>
+            <param name="method">The <see cref="T:Core.DataStructures.Method"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.AddElementToCollection(System.Windows.Forms.Label,System.Windows.Forms.Control)">
+            <summary>
+            Add an element to the collection
+            </summary>
+            <param name="lblParam">The <see cref="T:System.Windows.Forms.Label"/></param>
+            <param name="control">The <see cref="T:UserInterface.Controls.BaseControl"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.CalculateLocation(System.Windows.Forms.Label)">
+            <summary>
+            Calculate the control <see cref="P:System.Windows.Forms.Control.Location"/>
+            </summary>
+            <param name="lbl">The reference <see cref="T:System.Windows.Forms.Label"/></param>
+            <returns>The <see cref="T:System.Drawing.Point"/> with the calculated <see cref="P:System.Windows.Forms.Control.Location"/></returns>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.BtnInvoke_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add a <see cref="T:Core.DataStructures.Method"/> to the <see cref="T:Core.Scheduling.MethodScheduler"/>
+            <see cref="T:Core.Scheduling.ActionQueue`1"/>
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="F:UserInterface.Controls.MethodControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.MethodControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.PanelControl">
+            <summary>
+            Implement a panel control
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.PanelControl.code">
+            <summary>
+            The code
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.PanelControl.Code">
+            <summary>
+            The <see cref="T:UserInterface.Controls.PanelControl"/> code
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.PanelControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelControl.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.PanelControl"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="F:UserInterface.Controls.PanelControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.PanelControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.PanelSelectorControl">
+            <summary>
+            Implement a panel selector control
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.PanelSelectorControl.Value">
+            <summary>
+            The <see cref="T:UserInterface.Controls.PanelControl"/> associated to the
+            <see cref="T:UserInterface.Controls.PanelSelectorControl"/>
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.PanelSelectorControl.Button">
+            <summary>
+            The <see cref="T:UserInterface.Controls.ButtonControl"/> associated to the
+            <see cref="T:UserInterface.Controls.PanelSelectorControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelSelectorControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.PanelSelectorControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelSelectorControl.#ctor(System.String)">
+            <summary>
+            Initialize a new instance of <see cref="T:UserInterface.Controls.PanelSelectorControl"/>
+            </summary>
+            <param name="panelName"></param>
+        </member>
+        <member name="F:UserInterface.Controls.PanelSelectorControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.PanelSelectorControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.PanelSelectorControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ParameterControl">
+            <summary>
+            Define an <see cref="T:System.Windows.Forms.UserControl"/> for <see cref="T:Core.Parameters.IParameter"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ParameterControl.#ctor(Core.Parameters.IParameter,System.Windows.Forms.Panel)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ParameterControl"/>
+            </summary>
+            <remarks>
+            It's necessary to pass the <paramref name="parent"/> container as a parameter
+            in order to correctly resize the <see cref="T:UserInterface.Controls.ParameterControl"/>!
+            </remarks>
+            <param name="parameter">The <see cref="T:Core.Parameters.IParameter"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.ChannelControl"/> parent <see cref="T:System.Windows.Forms.Panel"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.ParameterControl.AsciiToByte(System.String)">
+            <summary>
+            Convert an ASCII <see cref="T:System.String"/> special characters with the relative <see cref="T:System.Byte"/> representation
+            </summary>
+            <param name="ascii">The ASCII <see cref="T:System.String"/></param>
+            <returns>The converted <see cref="T:System.String"/></returns>
+        </member>
+        <member name="F:UserInterface.Controls.ParameterControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ParameterControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ParameterControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageAdd">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageClear">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageExecute">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageLoad">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageSave">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageShutdown">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageStart">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.ImageStop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.Start">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.Properties.Resources.Stop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.ResourceControl">
+            <summary>
+            Implement an <see cref="T:System.Windows.Forms.UserControl"/> to handle a <see cref="T:Hardware.Resource"/>
+            <see cref="M:Hardware.Resource.Start"/> and <see cref="M:Hardware.Resource.Stop"/> method
+            (to modify the <see cref="P:Hardware.Resource.Status"/> accordingly)
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ResourceControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.#ctor(Hardware.IResource,System.Windows.Forms.Panel)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.ResourceControl"/>
+            </summary>
+            <remarks>
+            It's necessary to pass the <paramref name="parent"/> container as a parameter
+            in order to correctly resize the <see cref="T:UserInterface.Controls.ResourceControl"/>!
+            </remarks>
+            <param name="resource">The <see cref="T:Hardware.IResource"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.ResourceControl"/> parent <see cref="T:System.Windows.Forms.Panel"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.ResourceControl_Load(System.Object,System.EventArgs)">
+            <summary>
+            Handle the load event
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.ResourceStatus_ValueChanged(System.Object,Core.ValueChangedEventArgs)">
+            <summary>
+            Handle the <see cref="T:Hardware.IResource"/> status value changed event
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.UpdateControls">
+            <summary>
+            Update the UI controls
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.BtnRestartResource_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handle the button click event
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="F:UserInterface.Controls.ResourceControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.ResourceControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.SaveTestProgramPanel">
+            <summary>
+            Implement a save test program panel
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.SaveTestProgramPanel.#ctor(Newtonsoft.Json.Linq.JObject,Core.Scheduling.InstructionScheduler,UserInterface.Controls.BaseControl)">
+            <summary>
+            Create a new instance of <see cref="T:UserInterface.Controls.SaveTestProgramPanel"/>
+            </summary>
+            <param name="jsonToSave">The <see cref="T:Newtonsoft.Json.Linq.JObject"/> to save</param>
+            <param name="scheduler">The <see cref="T:Core.Scheduling.InstructionScheduler"/></param>
+            <param name="parent">The <see cref="T:UserInterface.Controls.BaseControl"/> panel</param>
+        </member>
+        <member name="F:UserInterface.Controls.SaveTestProgramPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.SaveTestProgramPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.SaveTestProgramPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.TextControl">
+            <summary>
+            Define a control for handling analog inputs as text.
+            See <see cref="T:UserInterface.Controls.BaseControl"/>
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.TextControl.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:UserInterface.Controls.TextControl"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.TextControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.TextControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.TextControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:UserInterface.Controls.VerticalLayoutPanel">
+            <summary>
+            Class that implements a control that automatically display all of its
+            children control by applying a vertical layout (from top to bottom).
+            See also <see cref="T:System.Windows.Forms.FlowLayoutPanel"/>
+            </summary>
+        </member>
+        <member name="F:UserInterface.Controls.VerticalLayoutPanel.SCROLLBAR_HORIZONTAL_SIZE">
+            <summary>
+            The vertical scrollbar horizontal size
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.VerticalLayoutPanel.AutoScroll">
+            <summary>
+            Get the auto scroll option
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.VerticalLayoutPanel.FlowDirection">
+            <summary>
+            Get the <see cref="T:System.Windows.FlowDirection"/> of the control
+            </summary>
+        </member>
+        <member name="P:UserInterface.Controls.VerticalLayoutPanel.WrapContents">
+            <summary>
+            Get the wrap contents option
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.VerticalLayoutPanel.AddControl(System.Windows.Forms.Control)">
+            <summary>
+            Add a <see cref="T:System.Windows.Forms.Control"/> to the controls collection and resize it
+            to fit horizontally
+            </summary>
+            <param name="control">The <see cref="T:System.Windows.Forms.Control"/> to add</param>
+            <remarks>
+            This method only resize the horizontal size of the <see cref="T:System.Windows.Forms.Control"/>,
+            so the vertical value must be already set before the call of this method!
+            </remarks>
+        </member>
+        <member name="F:UserInterface.Controls.VerticalLayoutPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:UserInterface.Controls.VerticalLayoutPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:UserInterface.Controls.VerticalLayoutPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:CircularProgressBar.Value">
+            <summary>
+            Progress value
+            </summary>
+        </member>
+    </members>
+</doc>

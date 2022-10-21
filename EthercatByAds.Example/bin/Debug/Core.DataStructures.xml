@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.DataStructures</name>
+    </assembly>
+    <members>
+        <member name="T:Core.DataStructures.BagChangedEventArgs`1">
+            <summary>
+            Handle the <see cref="T:Core.DataStructures.Bag`1"/> collection change
+            </summary>
+            <typeparam name="T">The type of the items in the <see cref="T:Core.DataStructures.Bag`1"/></typeparam>
+        </member>
+        <member name="P:Core.DataStructures.BagChangedEventArgs`1.Item">
+            <summary>
+            The item
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.BagChangedEventArgs`1.#ctor(`0)">
+            <summary>
+            Create a new instance of <see cref="T:Core.DataStructures.BagChangedEventArgs`1"/>
+            </summary>
+            <param name="item">The item</param>
+        </member>
+        <member name="T:Core.DataStructures.Bag`1">
+            <summary>
+            Class that represent a mathematical set of item,
+            i.e. a collection of distinct items
+            </summary>
+            <typeparam name="T">The type of elements in the <see cref="T:Core.DataStructures.Bag`1"/></typeparam>
+        </member>
+        <member name="E:Core.DataStructures.Bag`1.ItemAdded">
+            <summary>
+            <see cref="T:System.EventHandler"/> invoked when an item is added to the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="E:Core.DataStructures.Bag`1.ItemRemoved">
+            <summary>
+            <see cref="T:System.EventHandler"/> invoked when an item is removed to the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Bag`1.Count">
+            <summary>
+            The number of items in the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Bag`1.Keys">
+            <summary>
+            The keys of the items in the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Bag`1.Values">
+            <summary>
+            The values of the items in the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor method use d in the serialization
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/></param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/></param>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialize the instance of <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/></param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/></param>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.OnItemAdded(Core.DataStructures.BagChangedEventArgs{Core.IProperty})">
+            <summary>
+            On item added event
+            </summary>
+            <param name="e">The <see cref="T:Core.DataStructures.BagChangedEventArgs`1"/></param>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.OnItemRemoved(Core.DataStructures.BagChangedEventArgs{Core.IProperty})">
+            <summary>
+            On item removed event
+            </summary>
+            <param name="e">The <see cref="T:Core.DataStructures.BagChangedEventArgs`1"/></param>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.Add(Core.IProperty)">
+            <summary>
+            Add an item to the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+            <param name="item">The item to be added</param>
+            <returns><see langword="true"/> if the item is added,
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.Remove(Core.IProperty)">
+            <summary>
+            Remove an item to the <see cref="T:Core.DataStructures.Bag`1"/>.
+            See <see cref="M:Core.DataStructures.Bag`1.Remove(Core.IProperty)"/> and also
+            <see cref="M:System.Collections.Generic.Dictionary`2.Remove(`0)"/>
+            </summary>
+            <param name="item">The item to be removed</param>
+            <returns><see langword="true"/> if the item is removed,
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.Clear">
+            <summary>
+            Clear the <see cref="T:Core.DataStructures.Bag`1"/>, thus
+            removing all of the stored items
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.Remove(System.String)">
+            <summary>
+            Remove an item to the <see cref="T:Core.DataStructures.Bag`1"/> given its code.
+            See <see cref="M:Core.DataStructures.Bag`1.Remove(Core.IProperty)"/> and also
+            <see cref="M:System.Collections.Generic.Dictionary`2.Remove(`0)"/>
+            </summary>
+            <param name="code">The item code to be removed</param>
+            <returns><see langword="true"/> if the item is removed,
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.Get(System.String)">
+            <summary>
+            Retrieve an item from the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+            <param name="code">The code</param>
+            <returns>The object if the code is found
+             in the <see cref="T:Core.DataStructures.Bag`1"/>, <see langword="default"/> otherwise</returns>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.ToList">
+            <summary>
+            Convert the <see cref="T:Core.DataStructures.Bag`1"/>
+            into a <see cref="T:System.Collections.Generic.List`1"/>
+            </summary>
+            <returns>The converted <see cref="T:System.Collections.Generic.List`1"/></returns>
+        </member>
+        <member name="M:Core.DataStructures.Bag`1.GetEnumerator">
+            <summary>
+            Get the <see cref="T:System.Collections.Generic.IEnumerator`1"/> used to
+            iterate through the <see cref="T:Core.DataStructures.Bag`1"/>
+            </summary>
+            <returns>The <see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+        <member name="T:Core.DataStructures.ParameterList`1">
+            <summary>
+            A <see cref="T:Core.DataStructures.ParameterList`1"/> with OnAdd event handler.
+            See <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <typeparam name="T">The type of the list items</typeparam>
+        </member>
+        <member name="E:Core.DataStructures.ParameterList`1.OnAdd">
+            <summary>
+            The on add <see cref="T:System.EventHandler"/>
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.ParameterList`1.Add(`0)">
+            <summary>
+            Add an element to the <see cref="T:Core.DataStructures.ParameterList`1"/>
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="T:Core.DataStructures.Method">
+            <summary>
+            Class that represent a <see cref="T:Core.DataStructures.Method"/>.
+            See also <see cref="T:Core.DataStructures.MethodParameter"/>.
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Code">
+            <summary>
+            The <see cref="T:Core.DataStructures.Method"/> code
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Parameters">
+            <summary>
+            The <see cref="T:System.Collections.Generic.List`1"/> containing the <see cref="T:Core.DataStructures.Method"/> <see cref="T:Core.DataStructures.MethodParameter"/>.
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.ParametersCount">
+            <summary>
+            The <see cref="T:Core.DataStructures.Method"/> <see cref="T:Core.DataStructures.MethodParameter"/> count
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Object">
+            <summary>
+            The object on which to invoke the method or constructor.
+            See <see cref="M:System.Reflection.MethodBase.Invoke(System.Object,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.ValueAsObject">
+            <summary>
+            The <see cref="T:Core.DataStructures.Method"/> value as <see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Type">
+            <summary>
+            The <see cref="P:Core.DataStructures.Method.Type"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Name">
+            <summary>
+            The <see cref="T:Core.DataStructures.Method"/> name.
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Info">
+            <summary>
+            The <see cref="T:System.Reflection.MethodInfo"/> of the <see cref="T:Core.DataStructures.Method"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.Result">
+            <summary>
+            The result of the method.
+            If the method doesn't have a result,
+            than this property is <see langword="null"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.Method.HasParameters">
+            <summary>
+            <see langword="true"/> if the <see cref="T:Core.DataStructures.Method"/>
+            has at least one <see cref="T:Core.DataStructures.MethodParameter"/>.
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.Method.#ctor">
+            <summary>
+            Initialize a new <see cref="T:Core.DataStructures.Method"/> object with default values.
+            See also <see cref="T:Core.DataStructures.MethodParameter"/>.
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.Method.#ctor(System.String)">
+            <summary>
+            Initialize a new <see cref="T:Core.DataStructures.Method"/> object with default values
+            and assign it a name.
+            Also see <see cref="M:Core.DataStructures.Method.#ctor"/>.
+            </summary>
+            <param name="name">The <see cref="T:Core.DataStructures.Method"/> name</param>
+        </member>
+        <member name="M:Core.DataStructures.Method.Parameters_OnAdd(System.Object,System.EventArgs)">
+            <summary>
+            <see cref="T:System.EventHandler"/> for parameters on add.
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="M:Core.DataStructures.Method.ExtractParameterValue(System.String[])">
+            <summary>
+            Extract the parameters' value from a <see cref="T:System.String"/> array
+            containing all the parameters.
+            </summary>
+            <param name="values">The <see cref="T:System.String"/> array of parameters</param>
+        </member>
+        <member name="M:Core.DataStructures.Method.Invoke(System.String[])">
+            <summary>
+            Invoke a <see cref="T:Core.DataStructures.Method"/>.
+            See <see cref="M:System.Reflection.MethodBase.Invoke(System.Object,System.Object[])"/>.
+            </summary>
+            <returns>The result (<see langword="null"/> if not present)</returns>
+        </member>
+        <member name="M:Core.DataStructures.Method.UnwrapAction">
+            <summary>
+            Perform the method action.
+            See also <see cref="M:Core.DataStructures.Method.Invoke(System.String[])"/>
+            </summary>
+            <returns>The <see cref="T:System.Action"/> wrapped in the <see cref="T:Core.DataStructures.Method"/></returns>
+        </member>
+        <member name="M:Core.DataStructures.Method.ToString">
+            <summary>
+            Gives an alphabetical representation of the <see cref="T:Core.DataStructures.Method"/>
+            </summary>
+            <returns>The description of the <see cref="T:Core.DataStructures.Method"/></returns>
+        </member>
+        <member name="M:Core.DataStructures.Method.ExtendedToString">
+            <summary>
+            Gives an extended alphabetical representation of the <see cref="T:Core.DataStructures.Method"/>.
+            See also <see cref="M:Core.DataStructures.Method.ToString"/>
+            </summary>
+            <returns>The extended description of the <see cref="T:Core.DataStructures.Method"/></returns>
+        </member>
+        <member name="T:Core.DataStructures.ParameterType">
+            <summary>
+            Defines the <see cref="T:Core.DataStructures.MethodParameter"/> type
+            </summary>
+        </member>
+        <member name="F:Core.DataStructures.ParameterType.String">
+            <summary>
+            A <see cref="T:System.String"/> type parameter
+            </summary>
+        </member>
+        <member name="F:Core.DataStructures.ParameterType.Int">
+            <summary>
+            An <see cref="T:System.Int32"/> type parameter
+            </summary>
+        </member>
+        <member name="F:Core.DataStructures.ParameterType.Double">
+            <summary>
+            A <see cref="T:System.Double"/> type parameter
+            </summary>
+        </member>
+        <member name="F:Core.DataStructures.ParameterType.Bool">
+            <summary>
+            A <see cref="T:System.Boolean"/> type parameter
+            </summary>
+        </member>
+        <member name="F:Core.DataStructures.ParameterType.Enum">
+            <summary>
+            An <see cref="T:System.Enum"/> type parameter
+            </summary>
+        </member>
+        <member name="T:Core.DataStructures.MethodParameter">
+            <summary>
+            Defines a <see cref="T:Core.DataStructures.MethodParameter"/> of a <see cref="T:Core.DataStructures.Method"/>.
+            See also <see cref="T:Core.DataStructures.Method"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.MethodParameter.Value">
+            <summary>
+            The value of the <see cref="T:Core.DataStructures.MethodParameter"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.MethodParameter.Type">
+            <summary>
+            The <see cref="T:Core.DataStructures.MethodParameter"/> <see cref="T:Core.DataStructures.ParameterType"/>
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.MethodParameter.ExactType">
+            <summary>
+            The <see cref="T:Core.DataStructures.MethodParameter"/> exact <see cref="T:System.Type"/>
+            (i.e. the actual <see cref="T:System.Type"/> and not the base one)
+            </summary>
+        </member>
+        <member name="P:Core.DataStructures.MethodParameter.Name">
+            <summary>
+            The name of the <see cref="T:Core.DataStructures.MethodParameter"/>
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.MethodParameter.#ctor(System.Reflection.ParameterInfo)">
+            <summary>
+            Instantiate the <see cref="T:Core.DataStructures.MethodParameter"/> object
+            </summary>
+            <param name="parameterInfo">The <see cref="T:System.Reflection.ParameterInfo"/></param>
+        </member>
+        <member name="M:Core.DataStructures.MethodParameter.ConvertValue(System.Object)">
+            <summary>
+            Convert a general value to the actual one
+            of the <see cref="T:Core.DataStructures.MethodParameter"/>.
+            </summary>
+            <param name="value">The general value</param>
+        </member>
+        <member name="M:Core.DataStructures.MethodParameter.ToString">
+            <summary>
+            Gives an alphabetical description of the <see cref="T:Core.DataStructures.MethodParameter"/>
+            </summary>
+            <returns>A description of the object</returns>
+        </member>
+        <member name="M:Core.DataStructures.MethodParameter.ExtendedToString">
+            <summary>
+            Gives an extended alphabetical description of the <see cref="T:Core.DataStructures.MethodParameter"/>
+            </summary>
+            <returns>An extended description of the object</returns>
+        </member>
+        <member name="T:Core.DataStructures.MethodWrapper">
+            <summary>
+            A wrapper for <see cref="T:Core.DataStructures.Method"/>.
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.MethodWrapper.Wrap(System.Object)">
+            <summary>
+            Wrap all methods of an <see cref="T:System.Object"/> into
+            a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Core.DataStructures.Method"/>.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> of which wrap all methods</param>
+            <returns>The <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Core.DataStructures.Method"/></returns>
+        </member>
+        <member name="M:Core.DataStructures.MethodWrapper.Wrap(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Wrap a single <see cref="T:System.Object"/> method into a <see cref="T:Core.DataStructures.Method"/>.
+            </summary>
+            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo"/></param>
+            <param name="obj">The <see cref="T:System.Object"/> of which wrap a <see cref="T:Core.DataStructures.Method"/></param>
+            <returns>The <see cref="T:Core.DataStructures.Method"/> wrapped</returns>
+        </member>
+        <member name="T:Core.DataStructures.ServiceBroker">
+            <summary>
+            Implements a service broker
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.ServiceBroker.Initialize">
+            <summary>
+            Initialize the <see cref="T:Core.DataStructures.ServiceBroker"/>
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.ServiceBroker.Clear">
+            <summary>
+            Clear the <see cref="T:Core.DataStructures.ServiceBroker"/> collection
+            </summary>
+        </member>
+        <member name="M:Core.DataStructures.ServiceBroker.Add``1(Core.IProperty)">
+            <summary>
+            Add an item to the <see cref="T:Core.DataStructures.ServiceBroker"/>
+            </summary>
+            <typeparam name="T">The type of the item</typeparam>
+            <param name="item">The item to add</param>
+            <returns><see langword="true"/> if the item is added,
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:Core.DataStructures.ServiceBroker.Get``1">
+            <summary>
+            Get the collection relative to the specified type
+            </summary>
+            <typeparam name="T">The type of the collection to return</typeparam>
+            <returns>The <see cref="T:Core.DataStructures.Bag`1"/> containing the item retrieved
+            from the <see cref="T:Core.DataStructures.ServiceBroker"/></returns>
+        </member>
+        <member name="M:Core.DataStructures.ServiceBroker.GetEnumerator">
+            <summary>
+            Get the <see cref="T:System.Collections.Generic.IEnumerator`1"/> used to
+            iterate through the <see cref="T:Core.DataStructures.ServiceBroker"/>
+            </summary>
+            <returns>The <see cref="T:System.Collections.Generic.IEnumerator`1"/></returns>
+        </member>
+    </members>
+</doc>

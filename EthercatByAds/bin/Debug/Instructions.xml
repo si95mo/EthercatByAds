@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Instructions</name>
+    </assembly>
+    <members>
+        <member name="T:Instructions.IInstruction">
+            <summary>
+            Describe a generic instruction
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.InputParameters">
+            <summary>
+            The <see cref="T:Instructions.IInstruction"/> <see cref="T:Core.DataStructures.Bag`1"/>
+            of input <see cref="T:Core.Parameters.IParameter"/>
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.OutputParameters">
+            <summary>
+            The <see cref="T:Instructions.IInstruction"/> <see cref="T:Core.DataStructures.Bag`1"/>
+            of output <see cref="T:Core.Parameters.IParameter"/>
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.StartTime">
+            <summary>
+            The start time of the <see cref="T:Instructions.IInstruction"/>
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.StopTime">
+            <summary>
+            The stop time of the <see cref="T:Instructions.IInstruction"/>
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.Succeeded">
+            <summary>
+            The <see cref="T:Instructions.IInstruction"/> succeeded property
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.Failed">
+            <summary>
+            The <see cref="T:Instructions.IInstruction"/> failed property
+            </summary>
+        </member>
+        <member name="P:Instructions.IInstruction.Order">
+            <summary>
+            The <see cref="T:Instructions.IInstruction"/> order (for parallelism)
+            </summary>
+        </member>
+        <member name="M:Instructions.IInstruction.ExecuteInstruction">
+            <summary>
+            Execute the <see cref="T:Instructions.IInstruction"/>
+            </summary>
+        </member>
+        <member name="T:Instructions.Instruction">
+            <summary>
+            Basic implementation of a generic instruction
+            </summary>
+        </member>
+        <member name="P:Instructions.Instruction.Order">
+            <summary>
+            The order of the <see cref="T:Instructions.Instruction"/> (used in case of parallelism)
+            </summary>
+        </member>
+        <member name="P:Instructions.Instruction.ValueAsObject">
+            <summary>
+            The <see cref="T:Instructions.Instruction"/> value as <see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="M:Instructions.Instruction.#ctor(System.String)">
+            <summary>
+            Set the class attributes to default values
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Instructions.Instruction.ExecuteInstruction">
+            <summary>
+            Execute the <see cref="T:Instructions.Instruction"/>
+            </summary>
+        </member>
+        <member name="M:Instructions.Instruction.OnStart">
+            <summary>
+            Method called on start of the <see cref="T:Instructions.Instruction"/>. <br/>
+            Override to add some logic
+            </summary>
+            <remarks>
+            Note that <see langword="base"/> method should be called
+            inside the new implementation
+            </remarks>
+        </member>
+        <member name="M:Instructions.Instruction.OnStop">
+            <summary>
+            Method called on stop of the <see cref="T:Instructions.Instruction"/>. <br/>
+            Override to add some logic
+            </summary>
+            <remarks>
+            Note that <see langword="base"/> method should be called
+            inside the new implementation
+            </remarks>
+        </member>
+        <member name="M:Instructions.Instruction.OnFail">
+            <summary>
+            Method called on fail of the <see cref="T:Instructions.Instruction"/>. <br/>
+            Override to add some logic
+            </summary>
+            <remarks>
+            Note that <see langword="base"/> method should be called
+            inside the new implementation
+            </remarks>
+        </member>
+        <member name="M:Instructions.Instruction.Fail">
+            <summary>
+            Let the <see cref="T:Instructions.Instruction"/> fail. <br/>
+            Call in case the <see cref="T:Instructions.Instruction"/> logic and/or result are not met
+            </summary>
+        </member>
+    </members>
+</doc>

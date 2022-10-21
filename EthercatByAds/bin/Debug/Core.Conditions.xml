@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Core.Conditions</name>
+    </assembly>
+    <members>
+        <member name="T:Core.Conditions.Condition">
+            <summary>
+            Define a generic condition
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.Condition.#ctor(System.String)">
+            <summary>
+            Initialize the <see cref="T:Core.Conditions.Condition"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Conditions.Condition.OnValueChanged(Core.ValueChangedEventArgs)">
+            <summary>
+            On value changed event
+            </summary>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="M:Core.Conditions.Condition.PropagateValues(System.Object,Core.ValueChangedEventArgs)">
+            <summary>
+            <see cref="E:Core.Conditions.Condition.ValueChanged"/> event handler that manages
+            the propagation of the values to subscribers.
+            See <see cref="M:Core.Conditions.Condition.ConnectTo(Core.IProperty)"/>
+            </summary>
+            <param name="sender">The sender</param>
+            <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
+        </member>
+        <member name="T:Core.Conditions.FlyweightCondition">
+            <summary>
+            Implement a flyweight condition (i.e. a basic type of condition)
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.FlyweightCondition.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.FlyweightCondition"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Conditions.FlyweightCondition.#ctor(System.String,System.Boolean)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.FlyweightCondition"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="T:Core.Conditions.DummyCondition">
+            <summary>
+            Create a <see cref="T:Core.Conditions.Condition"/> that will retain its value since its not connected
+            to anything external
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.DummyCondition.#ctor(System.String)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.DummyCondition"/>
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Conditions.DummyCondition.#ctor(System.String,System.Boolean)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.DummyCondition"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="value">The initial value</param>
+        </member>
+        <member name="M:Core.Conditions.DummyCondition.Force(System.Boolean)">
+            <summary>
+            Force the <see cref="T:Core.Conditions.DummyCondition"/> value to change
+            </summary>
+            <remarks>
+            This is the only way to change the <see cref="T:Core.Conditions.DummyCondition"/> value
+            (other than a <see cref="M:Core.IProperty`1.ConnectTo(Core.IProperty)"/>)!
+            </remarks>
+            <param name="value">The new value</param>
+        </member>
+        <member name="T:Core.Conditions.ICondition">
+            <summary>
+            Define the basic prototype for a condition
+            </summary>
+        </member>
+        <member name="P:Core.Conditions.ICondition.Description">
+            <summary>
+            The <see cref="T:Core.Conditions.ICondition"/> description
+            </summary>
+        </member>
+        <member name="T:Core.Conditions.PropertyValueChanged">
+            <summary>
+            Implement an <see cref="T:Core.Conditions.ICondition"/> that will be <see langword="true"/>
+            when the value of a <see cref="T:Core.IProperty"/> change
+            </summary>
+        </member>
+        <member name="P:Core.Conditions.PropertyValueChanged.Value">
+            <summary>
+            The value of the <see cref="T:Core.Conditions.PropertyValueChanged"/>
+            </summary>
+            <remarks>
+            <see cref="P:Core.Conditions.PropertyValueChanged.Value"/> will be <see langword="true"/> when the <see cref="T:Core.IProperty"/> associated
+            with the <see cref="T:Core.Conditions.PropertyValueChanged"/> change its value and will automatically
+            become <see langword="false"/> once it will be accessed via the <see cref="P:Core.Conditions.PropertyValueChanged.Value"/> property getter!
+            </remarks>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueChanged.#ctor(System.String)">
+            <summary>
+            Create a new instance <see cref="T:Core.Conditions.PropertyValueChanged"/>
+            with default attribute values
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueChanged.#ctor(System.String,Core.IProperty{System.Boolean})">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.PropertyValueChanged"/> for
+            an <see cref="T:Core.IProperty"/> with a <see cref="T:System.Boolean"/> value
+            </summary>
+            <param name="code">The code</param>
+            <param name="property">The <see cref="T:Core.IProperty"/></param>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueChanged.#ctor(System.String,Core.IProperty{System.Double})">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.PropertyValueChanged"/>for
+            an <see cref="T:Core.IProperty"/> with a <see cref="T:System.Double"/> value
+            </summary>
+            <param name="code">The code</param>
+            <param name="property">The <see cref="T:Core.IProperty"/></param>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueChanged.#ctor(System.String,Core.IProperty{System.String})">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.PropertyValueChanged"/>for
+            an <see cref="T:Core.IProperty"/> with a <see cref="T:System.String"/> value
+            </summary>
+            <param name="code">The code</param>
+            <param name="property">The <see cref="T:Core.IProperty"/></param>
+        </member>
+        <member name="T:Core.Conditions.PropertyValueEqualTo`1">
+            <summary>
+            Implement an <see cref="T:Core.Conditions.ICondition"/> that will be <see langword="true"/>
+            when a property value is equal to the one passed
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueEqualTo`1.#ctor(System.String,Core.IProperty{`0},`0)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.PropertyValueEqualTo`1"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="property">The <see cref="T:Core.IProperty`1"/> of which test the value</param>
+            <param name="valueToTest">The target value</param>
+        </member>
+        <member name="T:Core.Conditions.PropertyValueInRange">
+            <summary>
+            Implement an <see cref="T:Core.Conditions.ICondition"/> that will be <see langword="true"/>
+            when a property value is in the passed range
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.PropertyValueInRange.#ctor(System.String,Core.IProperty{System.Double},System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.PropertyValueInRange"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="property">The <see cref="T:Core.IProperty`1"/> of which test the value</param>
+            <param name="minimum">The minimum value of the range</param>
+            <param name="maximum">The maximum value of the range</param>
+            <param name="isMinimumExcluded">
+            <see langword="true"/> if <paramref name="minimum"/> is excluded from the range, <see langword="false"/> otherwise
+            </param>
+            <param name="isMaximumExcluded">
+            <see langword="true"/> if <paramref name="maximum"/> is excluded from the range, <see langword="false"/> otherwise
+            </param>
+        </member>
+        <member name="T:Core.Conditions.TimeElapsed">
+            <summary>
+            Implement a condition that will be <see langword="true"/> after
+            a time interval elapsed
+            </summary>
+        </member>
+        <member name="P:Core.Conditions.TimeElapsed.Time">
+            <summary>
+            The time after which the <see cref="T:Core.Conditions.TimeElapsed"/> <see cref="T:Core.Conditions.Condition"/>
+            will be  <see langword="true"/>
+            </summary>
+        </member>
+        <member name="P:Core.Conditions.TimeElapsed.ElapsedTime">
+            <summary>
+            The actual elapsed time
+            </summary>
+        </member>
+        <member name="P:Core.Conditions.TimeElapsed.Started">
+            <summary>
+            The started state
+            </summary>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.TimeElapsed"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="time">The time after which the new instance will be <see langword="true"/> (as a <see cref="T:System.TimeSpan"/></param>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.#ctor(System.String,System.Double)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.TimeElapsed"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="time">The time after which the new instance will be <see langword="true"/> (in milliseconds)</param>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.#ctor(System.String,System.TimeSpan,Core.Conditions.ICondition)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.TimeElapsed"/>
+            </summary>
+            <param name="code">The code</param>
+            <param name="time">The time after which the new instance will be <see langword="true"/></param>
+            <param name="startCondition">The <see cref="T:Core.Conditions.ICondition"/> that will start the timer when will become <see langword="true"/></param>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.#ctor(System.String,Core.Conditions.ICondition,Core.Conditions.ICondition)">
+            <summary>
+            Create a new instance of <see cref="T:Core.Conditions.TimeElapsed"/>
+            </summary>
+            <remarks>
+            The type of instance of <see cref="T:Core.Conditions.TimeElapsed"/> created with this type of constructor is totally automated and does
+            not became <see langword="true"/> after a certain amount of time passed, but only when 2 other <see cref="T:Core.Conditions.ICondition"/> switch to <see langword="true"/>
+            </remarks>
+            <param name="code">The code</param>
+            <param name="startCondition">The <see cref="T:Core.Conditions.ICondition"/> that will start the timer when will become <see langword="true"/></param>
+            <param name="endCondition">The <see cref="T:Core.Conditions.ICondition"/> that will stop the timer when will become <see langword="true"/></param>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.InitializeParameters(System.TimeSpan)">
+            <summary>
+            Initialize specific class parameters
+            </summary>
+            <param name="time">The <see cref="T:Core.Conditions.Condition"/> time</param>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.CreateTimerTask">
+            <summary>
+            Create the timer <see cref="T:System.Threading.Tasks.Task"/>
+            </summary>
+            <returns>The timer (async) <see cref="T:System.Threading.Tasks.Task"/></returns>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.CreateTimerTask(System.Threading.CancellationToken)">
+            <summary>
+            Create the timer <see cref="T:System.Threading.Tasks.Task"/> with a <see cref="T:System.Threading.CancellationToken"/>
+            </summary>
+            <param name="token">The <see cref="T:System.Threading.CancellationToken"/></param>
+            <returns>The timer (async) <see cref="T:System.Threading.Tasks.Task"/></returns>
+        </member>
+        <member name="M:Core.Conditions.TimeElapsed.Start">
+            <summary>
+            Start the timer
+            </summary>
+            <remarks>
+            Only to use in case of no <see cref="T:Core.Conditions.Condition"/> passed in the constructor!
+            </remarks>
+        </member>
+    </members>
+</doc>
