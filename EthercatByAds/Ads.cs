@@ -251,7 +251,7 @@ namespace EthercatByAds
         public static bool Read(string variableName, out double valueRead)
         {
             bool returnValue = resource.Status.Value == ResourceStatus.Executing;
-            valueRead = 0;
+            valueRead = default;
 
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
@@ -285,7 +285,7 @@ namespace EthercatByAds
         public static bool Read(string variableName, out bool valueRead)
         {
             bool returnValue = resource.Status.Value == ResourceStatus.Executing;
-            valueRead = false;
+            valueRead = default;
 
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {

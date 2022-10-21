@@ -7,7 +7,7 @@ Module Program
     ''' <summary>
     ''' The AMS net id address. Leave empty to connect to a local ADS server, otherwise specify the in the correct route
     ''' </summary>
-    Const AmsNetId As String = ""
+    Const AmsNetId As String = "5.112.56.172.1.1"
 
     ''' <summary>
     ''' Application entry-point
@@ -16,7 +16,7 @@ Module Program
         Console.WriteLine($"{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Start{Environment.NewLine}")
 
         Try
-            '' Initialization
+            ' Initialization
             Dim initialized As Boolean = Ads.Initialize(AmsNetId, 851).Result
             Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Initialization done: {initialized}")
             If Ads.IsInError Then
@@ -25,29 +25,29 @@ Module Program
             End If
 
             '' Write operations
-            Dim digitalWriteDone As Boolean = Ads.Write("DigitalOutput", True) '' Digital write - the return value is the succeeded status
-            Console.WriteLine($"{vbTab}{vbTab}>> Digital write done? {digitalWriteDone}")
+            'Dim digitalWriteDone As Boolean = Ads.Write("DigitalOutput", True) '' Digital write - the return value is the succeeded status
+            'Console.WriteLine($"{vbTab}{vbTab}>> Digital write done? {digitalWriteDone}")
 
-            Dim analogWriteDone As Boolean = Ads.Write("AnalogOutput", Math.PI) '' Analog write - the return value is the succeeded status
-            Console.WriteLine($"{vbTab}{vbTab}>> Analog write done? {analogWriteDone}")
+            'Dim analogWriteDone As Boolean = Ads.Write("AnalogOutput", Math.PI) '' Analog write - the return value is the succeeded status
+            'Console.WriteLine($"{vbTab}{vbTab}>> Analog write done? {analogWriteDone}")
 
-            '' Read operations
+            ' Read operations
             Dim digitalReadValue As Boolean
-            Dim firstAnalogReadValue As Double
+            Dim analogReadValue As Double
 
-            Dim digitalReadDone As Boolean = Ads.Read("DigitalInput", digitalReadValue) '' Digital read - the return value is the succeeded status. The read value is inside the variable
-            Dim analogReadDone As Boolean = Ads.Read("AnalogInput", firstAnalogReadValue) '' Analog read - the return value is the succeeded status. The read value is inside the variable
+            Dim digitalReadDone As Boolean = Ads.Read("CanOpen_SYS_OK_BIT", digitalReadValue) ' Digital read - the return value is the succeeded status. The read value is inside the variable
+            Dim analogReadDone As Boolean = Ads.Read("CanOpen_Quote", analogReadValue) ' Analog read - the return value is the succeeded status. The read value is inside the variable
 
-            '' Value read from the ADS server
+            ' Value read from the ADS server
             Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Digital read value: {digitalReadValue}")
-            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Analog read value: {firstAnalogReadValue}")
+            Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Analog read value: {analogReadValue}")
         Catch ex As Exception
             Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Error occurred: {Environment.NewLine}{vbTab}{vbTab}>> {ex.Message}")
         End Try
 
         Console.WriteLine($"{Environment.NewLine}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> End{Environment.NewLine}")
 
-        '' End of communication
+        ' End of communication
         Dim stopResult As Boolean = Ads.Stop()
         Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> Stop result: {stopResult}")
 
