@@ -33,9 +33,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Core.Parameters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Diagnostic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Diagnostic.dll</HintPath>
+    </Reference>
     <Reference Include="Extensions">
       <HintPath>..\..\..\Framework\Extensions\bin\Debug\Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Hardware, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Hardware.dll</HintPath>
+    </Reference>
+    <Reference Include="Hardware.Twincat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Hardware.Twincat.dll</HintPath>
+    </Reference>
+    <Reference Include="IO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,9 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>

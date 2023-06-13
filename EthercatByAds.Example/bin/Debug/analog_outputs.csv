@@ -1,1 +1,2 @@
-Channel name       , Variable name , Description
+Channel name		, Variable name		, Description
+RESET_STAT		, GVL.AI_FILTERED_PC_PLC[0]		,

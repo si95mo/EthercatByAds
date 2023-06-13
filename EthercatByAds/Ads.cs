@@ -17,12 +17,22 @@ namespace EthercatByAds
         /// <summary>
         /// The initialized status (<see langword="true"/> if the initialization has been completed, <see langword="false"/> otherwise)
         /// </summary>
-        public static bool Initialized { get; private set; } = false;
+        public static bool Initialized { get; private set; }
 
         /// <summary>
         /// The communication status (<see langword="true"/> if the communication is in error, <see langword="false"/> otherwise)
         /// </summary>
-        public static bool IsInError { get; private set; } = false;
+        public static bool IsInError { get; private set; }
+
+        /// <summary>
+        /// All the digital variables read from the PLC
+        /// </summary>
+        public static bool[] Bits;
+
+        /// <summary>
+        /// All the analog variables read from the PLC
+        /// </summary>
+        public static double[] Measures;
 
         /// <summary>
         /// The reason of Ads communication failure
@@ -30,7 +40,7 @@ namespace EthercatByAds
         /// <remarks>
         /// If the communication is up, the value will be <see cref="string.Empty"/>
         /// </remarks>
-        public static string ReasonOfFailure { get; private set; } = "";
+        public static string ReasonOfFailure { get; private set; }
 
         #endregion Public fields
 
@@ -64,10 +74,14 @@ namespace EthercatByAds
         /// The (async) initialization <see cref="Task{TResult}"/> (in which the <see cref="Task"/>'s result
         /// will be <see langword="true"/> if the initialization completed successfully, <see langword="false"/> otherwise)
         /// </returns>
-        public static async Task<bool> Initialize(string amsNetAddress, int port, int pollingInterval = 100, int reconnnectionInterval = 10000,
+        public static async Task<bool> Initialize(string amsNetAddress, int port, int pollingInterval = 10, int reconnnectionInterval = 10000,
             string analogInputsPath = "analog_inputs.csv", string analogOutputsPath = "analog_outputs.csv", string digitalInputsPath = "digital_inputs.csv",
             string digitalOutputsPath = "digital_outputs.csv", char delimiter = ',')
         {
+            Initialized = false;
+            IsInError = false;
+            ReasonOfFailure = string.Empty;
+
             #region Logger initialization
 
             Logger.Initialize();
@@ -82,7 +96,7 @@ namespace EthercatByAds
                 resource = new TwincatResource("TwincatByAdsResource", port, pollingInterval);
 
             resource.Status.ValueChanged += Status_ValueChanged;
-            await Logger.InfoAsync($"Ads communication initialized");
+            await Logger.InfoAsync("Ads communication initialized");
 
             #endregion Resource initialization
 
@@ -126,7 +140,7 @@ namespace EthercatByAds
             else
                 HandleError("Digital inputs file not found");
 
-            await Logger.InfoAsync($"Channels created. A total of {resource.Channels.Count} channel(s) added");
+            await Logger.InfoAsync(string.Format("Channels created. A total of {0} channel(s) added", resource.Channels.Count));
 
             #endregion Digital outputs
 
@@ -189,7 +203,7 @@ namespace EthercatByAds
                 if (channel == null) // Channel not found
                 {
                     returnValue = false;
-                    Logger.Error($"{variableName} not found in the channels list");
+                    Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, write (analog)
                     channel.Value = value;
@@ -222,7 +236,7 @@ namespace EthercatByAds
                 if (channel == null) // Channel not found
                 {
                     returnValue = false;
-                    Logger.Error($"{variableName} not found in the channels list");
+                    Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, write (digital)
                     channel.Value = value;
@@ -251,7 +265,7 @@ namespace EthercatByAds
         public static bool Read(string variableName, out double valueRead)
         {
             bool returnValue = resource.Status.Value == ResourceStatus.Executing;
-            valueRead = default;
+            valueRead = default(double);
 
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
@@ -260,13 +274,32 @@ namespace EthercatByAds
                 if (channel == null) // Channel not found
                 {
                     returnValue = false;
-                    Logger.Error($"{variableName} not found in the channels list");
+                    Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, read
                     valueRead = channel.Value;
             }
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Read all the analog variables
+        /// </summary>
+        /// <returns>The array with the all the read values</returns>
+
+        public static double[] ReadMeasures()
+        {
+            List<double> measures = new List<double>();
+            if (Initialized && resource.Channels.Count > 0)
+            {
+                foreach (IChannel channel in resource.Channels)
+                    if (channel is TwincatAnalogInput)
+                        measures.Add((channel as TwincatAnalogInput).Value);
+            }
+
+            Measures = measures.ToArray();
+            return Measures;
         }
 
         /// <summary>
@@ -285,7 +318,7 @@ namespace EthercatByAds
         public static bool Read(string variableName, out bool valueRead)
         {
             bool returnValue = resource.Status.Value == ResourceStatus.Executing;
-            valueRead = default;
+            valueRead = default(bool);
 
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
@@ -294,13 +327,42 @@ namespace EthercatByAds
                 if (channel == null) // Channel not found
                 {
                     returnValue = false;
-                    Logger.Error($"{variableName} not found in the channels list");
+                    Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, read
                     valueRead = channel.Value;
             }
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Read all the digital variables
+        /// </summary>
+        /// <returns>The array with the all the read values</returns>
+
+        public static bool[] ReadBits()
+        {
+            List<bool> bits = new List<bool>();
+            if (Initialized && resource.Channels.Count > 0)
+            {
+                foreach (IChannel channel in resource.Channels)
+                    if (channel is TwincatDigitalInput)
+                        bits.Add((channel as TwincatDigitalInput).Value);
+            }
+
+            Bits = bits.ToArray();
+            return Bits;
+        }
+
+        /// <summary>
+        /// Read all the available variables from PLC. See <see cref="Bits"/> for the digital ones and 
+        /// <see cref="Measures"/> for the analog ones
+        /// </summary>
+        public static void ReadAll()
+        {
+            ReadBits();
+            ReadMeasures();
         }
 
         #endregion Read methods
@@ -334,7 +396,7 @@ namespace EthercatByAds
                 {
                     if (resource.Status.Value == ResourceStatus.Failure) // If the resource is in failure
                     {
-                        await Logger.WarnAsync($"{resource.Code} in failure. Attempting a reconnection to the PLC");
+                        await Logger.WarnAsync(string.Format("{0} in failure. Attempting a reconnection to the PLC", resource.Code));
                         await resource.Start(); // Attempt to start it
                     }
 
@@ -378,7 +440,9 @@ namespace EthercatByAds
         /// <param name="sender">The sender</param>
         /// <param name="e">The <see cref="ValueChangedEventArgs"/></param>
         private static void Status_ValueChanged(object sender, ValueChangedEventArgs e)
-            => HandleStatusChange();
+        {
+            HandleStatusChange();
+        }
 
         #endregion Helper methods
     }

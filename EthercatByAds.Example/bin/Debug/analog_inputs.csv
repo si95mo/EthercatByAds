@@ -1,2 +1,10 @@
-Channel name  ,Variable name    ,Description
-CanOpen_Quote ,GVL.AI_PLC_PC[0] ,
+Channel name		, Variable name		,Description
+Quote		, GVL.AI_FILTERED_PLC_PC[0]		,
+Speed		, GVL.AI_FILTERED_PLC_PC[1]		,
+BOARD_TEMP		, GVL.AI_FILTERED_PLC_PC[2]		,
+BEARINGS_TEMP		, GVL.AI_FILTERED_PLC_PC[3]		,
+STATOR_TEMP		, GVL.AI_FILTERED_PLC_PC[4]		,
+P75_FW_VERSION		, GVL.AI_FILTERED_PLC_PC[5]		,
+C39_FW_VERSION		, GVL.AI_FILTERED_PLC_PC[6]		,
+P75_YEAR		, GVL.AI_FILTERED_PLC_PC[7]		,
+P75_INCR		, GVL.AI_FILTERED_PLC_PC[8]		,
