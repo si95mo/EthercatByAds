@@ -9,16 +9,17 @@
             Handle the communication with a Beckhoff PLC using Ads protocol
             </summary>
         </member>
-        <member name="P:EthercatByAds.Ads.Initialized">
+        <member name="F:EthercatByAds.Ads.Bits">
             <summary>
-            The initialized status (<see langword="true"/> if the initialization has been completed, <see langword="false"/> otherwise)
+            All the digital variables read from the PLC
             </summary>
         </member>
-        <member name="P:EthercatByAds.Ads.IsInError">
+        <member name="F:EthercatByAds.Ads.Measures">
             <summary>
-            The communication status (<see langword="true"/> if the communication is in error, <see langword="false"/> otherwise)
+            All the analog variables read from the PLC
             </summary>
         </member>
+<<<<<<< HEAD
         <member name="F:EthercatByAds.Ads.Bits">
             <summary>
             All the digital variables read from the PLC
@@ -37,6 +38,8 @@
             If the communication is up, the value will be <see cref="F:System.String.Empty"/>
             </remarks>
         </member>
+=======
+>>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
         <member name="M:EthercatByAds.Ads.Initialize(System.String,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Char)">
             <summary>
             Initialize the communication with the PLC and create the communication channels
@@ -139,7 +142,11 @@
         </member>
         <member name="M:EthercatByAds.Ads.ReadAll">
             <summary>
+<<<<<<< HEAD
             Read all the available variables from PLC. See <see cref="F:EthercatByAds.Ads.Bits"/> for the digital ones and
+=======
+            Read all the available variables from PLC. See <see cref="F:EthercatByAds.Ads.Bits"/> for the digital ones and 
+>>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
             <see cref="F:EthercatByAds.Ads.Measures"/> for the analog ones
             </summary>
         </member>
@@ -169,10 +176,35 @@
             <param name="sender">The sender</param>
             <param name="e">The <see cref="T:Core.ValueChangedEventArgs"/></param>
         </member>
+        <member name="P:EthercatByAds.Ads.Initialized">
+            <summary>
+            The initialized status (<see langword="true"/> if the initialization has been completed, <see langword="false"/> otherwise)
+            </summary>
+        </member>
+        <member name="P:EthercatByAds.Ads.IsInError">
+            <summary>
+            The communication status (<see langword="true"/> if the communication is in error, <see langword="false"/> otherwise)
+            </summary>
+        </member>
+        <member name="P:EthercatByAds.Ads.ReasonOfFailure">
+            <summary>
+            The reason of Ads communication failure
+            </summary>
+            <remarks>
+            If the communication is up, the value will be <see cref="F:System.String.Empty"/>
+            </remarks>
+        </member>
         <member name="T:EthercatByAds.ChannelEntry">
             <summary>
             Describe a channel that has been read from the configuration file
             </summary>
+        </member>
+        <member name="M:EthercatByAds.ChannelEntry.#ctor(System.String,System.String)">
+            <summary>
+            Create a new entry of <see cref="T:EthercatByAds.ChannelEntry"/>
+            </summary>
+            <param name="channelCode">The channel code</param>
+            <param name="variableName">The PLC variable name</param>
         </member>
         <member name="P:EthercatByAds.ChannelEntry.ChannelCode">
             <summary>
@@ -183,13 +215,6 @@
             <summary>
             The PLC variable name (low level)
             </summary>
-        </member>
-        <member name="M:EthercatByAds.ChannelEntry.#ctor(System.String,System.String)">
-            <summary>
-            Create a new entry of <see cref="T:EthercatByAds.ChannelEntry"/>
-            </summary>
-            <param name="channelCode">The channel code</param>
-            <param name="variableName">The PLC variable name</param>
         </member>
         <member name="T:EthercatByAds.Parser">
             <summary>

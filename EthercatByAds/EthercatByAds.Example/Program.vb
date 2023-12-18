@@ -35,7 +35,6 @@ Module Program
             ' Read operations
             Dim digitalReadValue As Boolean
             Dim analogReadValue As Double
-            Dim analogReadValue1 As Double
 
             Dim digitalReadDone As Boolean
 
@@ -85,40 +84,7 @@ Module Program
 
             analogReadDone = Ads.Read("P75_FW_VERSION", analogReadValue) ' Analog read - the return value is the succeeded status. The read value is inside the variable
 
-<<<<<<< HEAD
             '' P75 version conversion
-            ' Dim cent As Long
-            ' Dim dec As Long
-            ' Dim num As Long
-            ' cent = analogReadValue And &HFF
-            ' dec = (analogReadValue And &HFF00) / 256
-            'num = (analogReadValue And &HFF0000) / (256 * 256)
-
-            'converto da carattere a num
-            ' cent = cent - &H30
-            ' dec = dec - &H30
-            ' num = num - &H30
-
-            ' analogReadValue = cent * 100 + dec * 10 + num
-            Console.WriteLine("{0}{1} >> P75_FW_VERSION: {2}", vbTab, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"), analogReadValue)
-
-            analogReadDone = Ads.Read("C39_FW_VERSION", analogReadValue) ' Analog read - the return value is the succeeded status. The read value is inside the variable
-            '' C39 version conversion
-            ' Dim cent1 As Long
-            ' Dim dec1 As Long
-            ' Dim num1 As Long
-            ' dec1 = analogReadValue And &HFF
-            ' num1 = (analogReadValue And &HFF00) / 256
-
-            'converto da carattere a num
-            ' dec1 = dec1 - &H30
-            ' num1 = num1 - &H30
-
-            ' analogReadValue = dec1 * 10 + num1
-            Console.WriteLine("{0}{1} >> C39_FW_VERSION: {2}", vbTab, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"), analogReadValue)
-
-=======
-            ' P75 version conversion
             Dim cent As Long
             Dim dec As Long
             Dim num As Long
@@ -135,7 +101,7 @@ Module Program
             Console.WriteLine("{0}{1} >> P75_FW_VERSION: {2}", vbTab, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"), analogReadValue)
 
             analogReadDone = Ads.Read("C39_FW_VERSION", analogReadValue) ' Analog read - the return value is the succeeded status. The read value is inside the variable
-            ' C39 version conversion
+            '' C39 version conversion
             Dim cent1 As Long
             Dim dec1 As Long
             Dim num1 As Long
@@ -149,13 +115,6 @@ Module Program
             analogReadValue = dec1 * 10 + num1
             Console.WriteLine("{0}{1} >> C39_FW_VERSION: {2}", vbTab, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"), analogReadValue)
 
-            analogReadDone = Ads.Read("P75_YEAR", analogReadValue) ' Analog read - the return value is the succeeded status. The read value is inside the variable
-            analogReadDone = Ads.Read("P75_INCR", analogReadValue1) ' Analog read - the return value is the succeeded status. The read value is inside the variable
-            Console.WriteLine("{0}{1} >> P75_SN: {2}", vbTab, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"), analogReadValue * 1000000 + analogReadValue1)
-
-
-
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
             Dim allAnalogs() As Double
             allAnalogs = Ads.ReadMeasures()
 
@@ -165,27 +124,15 @@ Module Program
             ' Dim analogWriteDone As Boolean
 
             ' analogWriteDone = Ads.Write("RESET_STAT", 0)
-<<<<<<< HEAD
             ' Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 0")
             ' Thread.Sleep(1000)
 
             ' analogWriteDone = Ads.Write("RESET_STAT", 1)
-            ' Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 1")
+            'Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 1")
             ' Thread.Sleep(1000)
 
             ' analogWriteDone = Ads.Write("RESET_STAT", 0)
             ' Console.WriteLine($"{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 0")
-=======
-            ' Console.WriteLine("{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 0")
-            ' Thread.Sleep(1000)
-
-            ' analogWriteDone = Ads.Write("RESET_STAT", 1)
-            ' Console.WriteLine("{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 1")
-            ' Thread.Sleep(1000)
-
-            ' analogWriteDone = Ads.Write("RESET_STAT", 0)
-            ' Console.WriteLine("{vbTab}{DateTime.Now:yyyy-MM-dd hh:mm:ss.fff} >> RESET_STAT: 0")
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
             ' ************************FINE RESET ORE *********************************
 
         Catch ex As Exception

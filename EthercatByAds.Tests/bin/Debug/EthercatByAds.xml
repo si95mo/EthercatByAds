@@ -19,27 +19,6 @@
             All the analog variables read from the PLC
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="F:EthercatByAds.Ads.Bits">
-            <summary>
-            All the digital variables read from the PLC
-            </summary>
-        </member>
-        <member name="F:EthercatByAds.Ads.Measures">
-            <summary>
-            All the analog variables read from the PLC
-            </summary>
-        </member>
-        <member name="P:EthercatByAds.Ads.ReasonOfFailure">
-            <summary>
-            The reason of Ads communication failure
-            </summary>
-            <remarks>
-            If the communication is up, the value will be <see cref="F:System.String.Empty"/>
-            </remarks>
-        </member>
-=======
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
         <member name="M:EthercatByAds.Ads.Initialize(System.String,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Char)">
             <summary>
             Initialize the communication with the PLC and create the communication channels
@@ -142,11 +121,7 @@
         </member>
         <member name="M:EthercatByAds.Ads.ReadAll">
             <summary>
-<<<<<<< HEAD
-            Read all the available variables from PLC. See <see cref="F:EthercatByAds.Ads.Bits"/> for the digital ones and
-=======
             Read all the available variables from PLC. See <see cref="F:EthercatByAds.Ads.Bits"/> for the digital ones and 
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
             <see cref="F:EthercatByAds.Ads.Measures"/> for the analog ones
             </summary>
         </member>

@@ -107,6 +107,7 @@ namespace EthercatByAds
 
             List<ChannelEntry> channelEntries = await Parser.ReadAndParseFile(analogInputsPath, delimiter);
             if (channelEntries != null)
+<<<<<<< HEAD
             {
                 channelEntries.ForEach((x) => new TwincatAnalogInput(x.ChannelCode, x.VariableName, resource));
             }
@@ -114,6 +115,11 @@ namespace EthercatByAds
             {
                 HandleError("Analog inputs file not found");
             }
+=======
+                channelEntries.ForEach((x) => new TwincatAnalogInput(x.ChannelCode, x.VariableName, resource));
+            else
+                HandleError("Analog inputs file not found");
+>>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
 
             #endregion Analog inputs
 

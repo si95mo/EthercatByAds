@@ -33,43 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>C:\Users\simod\Desktop\Meta\Framework\Rest\bin\Debug\Core.dll</HintPath>
-=======
-      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Core.dll</HintPath>
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
-    </Reference>
-    <Reference Include="Core.Parameters, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="Diagnostic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>C:\Users\simod\Desktop\Meta\Framework\Diagnostic\bin\Debug\Diagnostic.dll</HintPath>
-=======
-      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Diagnostic.dll</HintPath>
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
-    </Reference>
     <Reference Include="Extensions">
       <HintPath>..\..\..\Framework\Extensions\bin\Debug\Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Hardware, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>C:\Users\simod\Desktop\Meta\Framework\Hardware.Serial\bin\Debug\Hardware.dll</HintPath>
-    </Reference>
-    <Reference Include="Hardware.Twincat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\simod\Desktop\Meta\Framework\Hardware.Twincat\bin\Debug\Hardware.Twincat.dll</HintPath>
-=======
-      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Hardware.dll</HintPath>
-    </Reference>
-    <Reference Include="Hardware.Twincat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Framework\Hardware.Twincat\bin\Debug\Hardware.Twincat.dll</HintPath>
->>>>>>> 0c6b9b9c21cfefc6b82a59526f585da35baddcfb
-    </Reference>
-    <Reference Include="IO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -82,11 +48,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="UserInterface.Controls">
-      <HintPath>C:\Users\simod\Desktop\Meta\Framework\UserInterafce.Forms\bin\Debug\UserInterface.Controls.dll</HintPath>
+      <HintPath>..\..\..\Framework\UserInterface.Components\bin\Debug\UserInterface.Controls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>

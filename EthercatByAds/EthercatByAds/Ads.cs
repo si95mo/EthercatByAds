@@ -3,7 +3,6 @@ using Diagnostic;
 using Hardware;
 using Hardware.Twincat;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EthercatByAds
@@ -91,12 +90,10 @@ namespace EthercatByAds
 
             #region Resource initialization
 
-            if (amsNetAddress.CompareTo(string.Empty) == 0)
-                resource = new TwincatResource("TwincatByAdsResource", port, pollingInterval);
-            else
-            {
+            if (amsNetAddress.CompareTo(string.Empty) != 0)
                 resource = new TwincatResource("TwincatByAdsResource", amsNetAddress, port, pollingInterval);
-            }
+            else
+                resource = new TwincatResource("TwincatByAdsResource", port, pollingInterval);
 
             resource.Status.ValueChanged += Status_ValueChanged;
             await Logger.InfoAsync("Ads communication initialized");
@@ -109,13 +106,9 @@ namespace EthercatByAds
 
             List<ChannelEntry> channelEntries = await Parser.ReadAndParseFile(analogInputsPath, delimiter);
             if (channelEntries != null)
-            {
                 channelEntries.ForEach((x) => new TwincatAnalogInput(x.ChannelCode, x.VariableName, resource));
-            }
             else
-            {
                 HandleError("Analog inputs file not found");
-            }
 
             #endregion Analog inputs
 
@@ -123,13 +116,9 @@ namespace EthercatByAds
 
             channelEntries = await Parser.ReadAndParseFile(analogOutputsPath, delimiter);
             if (channelEntries != null)
-            {
                 channelEntries.ForEach((x) => new TwincatAnalogOutput(x.ChannelCode, x.VariableName, resource));
-            }
             else
-            {
                 HandleError("Analog outputs file not found");
-            }
 
             #endregion Analog outputs
 
@@ -137,13 +126,9 @@ namespace EthercatByAds
 
             channelEntries = await Parser.ReadAndParseFile(digitalInputsPath, delimiter);
             if (channelEntries != null)
-            {
                 channelEntries.ForEach((x) => new TwincatDigitalInput(x.ChannelCode, x.VariableName, resource));
-            }
             else
-            {
                 HandleError("Digital inputs file not found");
-            }
 
             #endregion Digital inputs
 
@@ -151,13 +136,9 @@ namespace EthercatByAds
 
             channelEntries = await Parser.ReadAndParseFile(digitalOutputsPath, delimiter);
             if (channelEntries != null)
-            {
                 channelEntries.ForEach((x) => new TwincatDigitalOutput(x.ChannelCode, x.VariableName, resource));
-            }
             else
-            {
                 HandleError("Digital inputs file not found");
-            }
 
             await Logger.InfoAsync(string.Format("Channels created. A total of {0} channel(s) added", resource.Channels.Count));
 
@@ -188,9 +169,7 @@ namespace EthercatByAds
         public static bool Stop()
         {
             if (Initialized) // Stop the resource only if it has been initialized
-            {
                 resource.Stop();
-            }
 
             bool returnValue = resource.Status.Value == ResourceStatus.Stopped;
             return returnValue;
@@ -220,15 +199,14 @@ namespace EthercatByAds
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
                 // Get the channel
-                if (!(resource.Channels.Get(variableName) is TwincatAnalogOutput channel)) // Channel not found
+                TwincatAnalogOutput channel = resource.Channels.Get(variableName) as TwincatAnalogOutput;
+                if (channel == null) // Channel not found
                 {
                     returnValue = false;
                     Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, write (analog)
-                {
                     channel.Value = value;
-                }
             }
 
             return returnValue;
@@ -254,15 +232,14 @@ namespace EthercatByAds
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
                 // Get the channel
-                if (!(resource.Channels.Get(variableName) is TwincatDigitalOutput channel)) // Channel not found
+                TwincatDigitalOutput channel = resource.Channels.Get(variableName) as TwincatDigitalOutput;
+                if (channel == null) // Channel not found
                 {
                     returnValue = false;
                     Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, write (digital)
-                {
                     channel.Value = value;
-                }
             }
 
             return returnValue;
@@ -293,16 +270,14 @@ namespace EthercatByAds
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
                 // Get the channel
-                // Get the channel
-                if (!(resource.Channels.Get(variableName) is TwincatAnalogInput channel)) // Channel not found
+                TwincatAnalogInput channel = resource.Channels.Get(variableName) as TwincatAnalogInput; // Get the channel
+                if (channel == null) // Channel not found
                 {
                     returnValue = false;
                     Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, read
-                {
                     valueRead = channel.Value;
-                }
             }
 
             return returnValue;
@@ -318,32 +293,9 @@ namespace EthercatByAds
             List<double> measures = new List<double>();
             if (Initialized && resource.Channels.Count > 0)
             {
-                foreach (IChannel channel in resource.Channels)
+                foreach(IChannel channel in resource.Channels)
                     if (channel is TwincatAnalogInput)
                         measures.Add((channel as TwincatAnalogInput).Value);
-            }
-
-            Measures = measures.ToArray();
-            return Measures;
-        }
-
-        /// <summary>
-        /// Read all the analog variables
-        /// </summary>
-        /// <returns>The array with the all the read values</returns>
-
-        public static double[] ReadMeasures()
-        {
-            List<double> measures = new List<double>();
-            if (Initialized && resource.Channels.Count > 0)
-            {
-                foreach (IChannel channel in resource.Channels.Cast<IChannel>())
-                {
-                    if (channel is TwincatAnalogInput)
-                    {
-                        measures.Add((channel as TwincatAnalogInput).Value);
-                    }
-                }
             }
 
             Measures = measures.ToArray();
@@ -371,16 +323,14 @@ namespace EthercatByAds
             if (Initialized && resource.Channels.Count > 0) // If initialization has been done and the resource has channels
             {
                 // Get the channel
-                // Get the channel
-                if (!(resource.Channels.Get(variableName) is TwincatDigitalInput channel)) // Channel not found
+                TwincatDigitalInput channel = resource.Channels.Get(variableName) as TwincatDigitalInput; // Get the channel
+                if (channel == null) // Channel not found
                 {
                     returnValue = false;
                     Logger.Error(string.Format("{0} not found in the channels list", variableName));
                 }
                 else // Channel found, read
-                {
                     valueRead = channel.Value;
-                }
             }
 
             return returnValue;
@@ -396,13 +346,9 @@ namespace EthercatByAds
             List<bool> bits = new List<bool>();
             if (Initialized && resource.Channels.Count > 0)
             {
-                foreach (IChannel channel in resource.Channels.Cast<IChannel>())
-                {
+                foreach (IChannel channel in resource.Channels)
                     if (channel is TwincatDigitalInput)
-                    {
                         bits.Add((channel as TwincatDigitalInput).Value);
-                    }
-                }
             }
 
             Bits = bits.ToArray();
@@ -410,7 +356,7 @@ namespace EthercatByAds
         }
 
         /// <summary>
-        /// Read all the available variables from PLC. See <see cref="Bits"/> for the digital ones and
+        /// Read all the available variables from PLC. See <see cref="Bits"/> for the digital ones and 
         /// <see cref="Measures"/> for the analog ones
         /// </summary>
         public static void ReadAll()
@@ -445,19 +391,19 @@ namespace EthercatByAds
         {
             // Create the reconnecting task
             Task reconnectingTask = new Task(async () =>
+            {
+                while (true)
                 {
-                    while (true)
+                    if (resource.Status.Value == ResourceStatus.Failure) // If the resource is in failure
                     {
-                        if (resource.Status.Value == ResourceStatus.Failure) // If the resource is in failure
-                        {
-                            await Logger.WarnAsync(string.Format("{0} in failure. Attempting a reconnection to the PLC", resource.Code));
-                            await resource.Start(); // Attempt to start it
-                        }
-
-                        // Wait for <reconnectionInterval> milliseconds
-                        await Task.Delay(reconnectionInterval);
+                        await Logger.WarnAsync(string.Format("{0} in failure. Attempting a reconnection to the PLC", resource.Code));
+                        await resource.Start(); // Attempt to start it
                     }
+
+                    // Wait for <reconnectionInterval> milliseconds
+                    await Task.Delay(reconnectionInterval);
                 }
+            }
             );
 
             return reconnectingTask;
@@ -469,14 +415,10 @@ namespace EthercatByAds
         private static void HandleStatusChange()
         {
             if (resource.Status.Value != ResourceStatus.Starting && resource.Status.Value != ResourceStatus.Stopping)
-            {
                 IsInError = resource.Status.Value == ResourceStatus.Failure;
-            }
 
             if (!IsInError) // The resource is not in error
-            {
                 ReasonOfFailure = "";
-            }
             else // The resource is in error
             {
                 if (resource.LastFailure.Description.CompareTo(string.Empty) != 0)
