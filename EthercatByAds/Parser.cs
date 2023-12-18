@@ -31,7 +31,9 @@ namespace EthercatByAds
                 channels = ParseFile(text, delimiter);
             }
             else
-                await Logger.ErrorAsync($"File specified at '{path}' does not found");
+            {
+                await Logger.ErrorAsync(string.Format("File specified at '{0}' does not found", path));
+            }
 
             return channels;
         }
@@ -69,7 +71,9 @@ namespace EthercatByAds
                 channelEntry = new ChannelEntry(splittedLine[0].Trim(), splittedLine[1].Trim());
 
                 if (channelEntry.ChannelCode.CompareTo(string.Empty) != 0)
+                {
                     channels.Add(channelEntry);
+                }
             }
 
             return channels;

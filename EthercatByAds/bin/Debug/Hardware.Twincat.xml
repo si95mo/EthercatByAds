@@ -140,7 +140,9 @@
             <summary>
             Create a new instance of <see cref="T:Hardware.Twincat.TwincatResource"/> by specifying both the ams net address and the port of the Ads server
             </summary>
-            <remarks>If <paramref name="amsNetAddress"/> is equal to <see cref="F:System.String.Empty"/>, then the connection will be established to the local ads server</remarks>
+            <remarks>
+            If <paramref name="amsNetAddress"/> is equal to <see cref="F:System.String.Empty"/>, then the connection will be established to the local ads server
+            </remarks>
             <param name="code">The code</param>
             <param name="amsNetAddress">The PLC ams net address</param>
             <param name="port">The port number</param>
@@ -151,22 +153,77 @@
             <summary>
             Initialize a new instance of <see cref="T:Hardware.Twincat.TwincatResource"/> by specifying only the port number of the Ads server
             </summary>
-            <remarks>This version of the constructor should be used when the connection has to be established to a local ADS server (only the port is needed in this case)</remarks>
+            <remarks>
+            This version of the constructor should be used when the connection has to be established to a local ADS server (only the port is needed in this case)
+            </remarks>
             <param name="code">The code</param>
             <param name="port">The port number</param>
             <param name="pollingInterval">The polling interval (in milliseconds)</param>
             <param name="maximumDelayBetweenNotifications">The maximum delay between each ads notification (in millisecond)</param>
         </member>
+        <member name="M:Hardware.Twincat.TwincatResource.InvokeRpcMethod``1(System.String,System.String,System.Object[])">
+            <summary>
+            Call an RPC (Remote Procedure Call) method
+            </summary>
+            <typeparam name="T">The return value type</typeparam>
+            <param name="symbolPath">The method instance path (i.e. MAIN.fbCalculator)</param>
+            <param name="methodName">The method name (i.e. Sum)</param>
+            <param name="parameters">The array of parameters</param>
+            <returns>The result of the call</returns>
+            <exception cref="T:System.Exception">An <see cref="T:System.Exception"/> in case of invalid RPC call</exception>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.IsAValidType(System.Type)">
+            <summary>
+            Determine wheather <paramref name="type"/> is valid or not
+            </summary>
+            <param name="type">The <see cref="T:System.Type"/> to test</param>
+            <returns><see langword="true"/> if <paramref name="type"/> is valid, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.SetArguments(TwinCAT.Ads.AdsBinaryWriter,System.Object[])">
+            <summary>
+            Set the arguments of an RPC call
+            </summary>
+            <param name="binaryWriter">The <see cref="T:TwinCAT.Ads.AdsBinaryWriter"/></param>
+            <param name="parameters">The parameters array</param>
+            <exception cref="T:System.Exception">An <see cref="T:System.Exception"/> in case of invalid parameters <see cref="T:System.Type"/></exception>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.GetReturnValue``1(TwinCAT.Ads.AdsBinaryReader,System.Int32)">
+            <summary>
+            Get the return value of an RPC call
+            </summary>
+            <typeparam name="T">The return <see cref="T:System.Type"/></typeparam>
+            <param name="binaryReader">The <see cref="T:TwinCAT.Ads.AdsBinaryReader"/></param>
+            <param name="byteCount">The number of bytes</param>
+            <returns>The return value</returns>
+            <exception cref="T:System.Exception">An <see cref="T:System.Exception"/> in case of invalid parameters <see cref="T:System.Type"/></exception>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.GetRPCReturnArray``1(TwinCAT.Ads.AdsBinaryReader,System.Int32)">
+            <summary>
+            Get the return value of an RPC call in case of an array
+            </summary>
+            <typeparam name="T">The return <see cref="T:System.Type"/></typeparam>
+            <param name="binaryReader">The <see cref="T:TwinCAT.Ads.AdsBinaryReader"/></param>
+            <param name="byteCount">The number of bytes</param>
+            <returns>The return value</returns>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.GetParameterSize(System.Object)">
+            <summary>
+            Get a <paramref name="parameter"/> size in bytes
+            </summary>
+            <param name="parameter">The parameter of which retrieve the size</param>
+            <returns>The size of <paramref name="parameter"/></returns>
+        </member>
+        <member name="M:Hardware.Twincat.TwincatResource.GetTypeSizeInBeckhoff(System.Type)">
+            <summary>
+            Get the size of a type as defined by Beckhoff
+            </summary>
+            <param name="dotNetType">The <see cref="T:System.Type"/> inside the .net framework</param>
+            <returns>The retrieved size</returns>
+        </member>
         <member name="M:Hardware.Twincat.TwincatResource.InitializeResource">
             <summary>
             Initialize the <see cref="T:Hardware.Twincat.TwincatResource"/> status
             </summary>
-        </member>
-        <member name="M:Hardware.Twincat.TwincatResource.Send(System.String)">
-            <summary>
-            Send a value through the <see cref="T:Hardware.Twincat.TwincatResource"/>
-            </summary>
-            <param name="code">The channel code with the value to send</param>
         </member>
         <!-- Badly formed XML comment ignored for member "M:Hardware.Twincat.TwincatResource.TryGetInstance(Hardware.Twincat.ITwincatChannel,TwinCAT.TypeSystem.ISymbol@)" -->
     </members>

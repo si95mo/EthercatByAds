@@ -35,6 +35,41 @@
             </summary>
             <returns>The description of the object</returns>
         </member>
+        <member name="T:Core.Parameters.ContainerParameter`1">
+            <summary>
+            Define an abstract container parameter
+            </summary>
+            <typeparam name="T">The type of the contained objects</typeparam>
+        </member>
+        <member name="P:Core.Parameters.ContainerParameter`1.SubParameters">
+            <summary>
+            The <see cref="T:Core.DataStructures.Bag`1"/> of sub parameters
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.ContainerParameter`1.SubParametersAsList">
+            <summary>
+            The <see cref="P:Core.Parameters.ContainerParameter`1.SubParameters"/> as a <see cref="T:System.Collections.Generic.List`1"/>
+            </summary>
+        </member>
+        <member name="M:Core.Parameters.ContainerParameter`1.#ctor(System.String)">
+            <summary>
+            Initialize <see cref="T:Core.Parameters.ContainerParameter`1"/> attributes
+            </summary>
+            <param name="code">The code</param>
+        </member>
+        <member name="M:Core.Parameters.ContainerParameter`1.Add(`0)">
+            <summary>
+            Add an item to the <see cref="T:Core.Parameters.IContainerParameter"/>
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Core.Parameters.ContainerParameter`1.Get(System.String)">
+            <summary>
+            Get an element from the <see cref="T:Core.Parameters.ContainerParameter`1"/>
+            </summary>
+            <param name="code">The code of the element to get</param>
+            <returns>The retrieved element, or <see langword="default"/> if nothing was found</returns>
+        </member>
         <member name="T:Core.Parameters.DifferenceParameter">
             <summary>
             Implement a <see cref="T:Core.Parameters.NumericParameter"/> that is the difference of 2 <see cref="T:Core.Parameters.NumericParameter"/>
@@ -103,9 +138,14 @@
             </summary>
             <returns>The description of the object</returns>
         </member>
-        <member name="T:Core.Parameters.IBoolParameter">
+        <member name="T:Core.Parameters.IContainerParameter">
             <summary>
-            Describe a generic bool parameter
+            Define a container parameter interface
+            </summary>
+        </member>
+        <member name="P:Core.Parameters.IContainerParameter.SubParameters">
+            <summary>
+            The <see cref="T:Core.DataStructures.Bag`1"/> of <see cref="T:Core.Parameters.IParameter"/>
             </summary>
         </member>
         <member name="T:Core.Parameters.IEnumParameter">
@@ -182,16 +222,6 @@
         <member name="P:Core.Parameters.IParameter`1.Value">
             <summary>
             The <see cref="T:Core.Parameters.IParameter"/> value
-            </summary>
-        </member>
-        <member name="T:Core.Parameters.IStringParameter">
-            <summary>
-            Describe a generic string parameter
-            </summary>
-        </member>
-        <member name="T:Core.Parameters.ITimeSpanParameter">
-            <summary>
-            Describe a generic time span parameter
             </summary>
         </member>
         <member name="T:Core.Parameters.MultiplicationParameter">

@@ -32,7 +32,7 @@
         </member>
         <member name="T:Core.Conditions.FlyweightCondition">
             <summary>
-            Implement a flyweight condition (i.e. a basic type of condition)
+            Implement a flyweight condition (i.e. a basic type of condition that just expose a boolean value)
             </summary>
         </member>
         <member name="M:Core.Conditions.FlyweightCondition.#ctor(System.String)">
@@ -51,7 +51,7 @@
         <member name="T:Core.Conditions.DummyCondition">
             <summary>
             Create a <see cref="T:Core.Conditions.Condition"/> that will retain its value since its not connected
-            to anything external
+            to anything external (aside from possible connections with <see cref="M:Core.Conditions.Condition.ConnectTo(Core.IProperty)"/>)
             </summary>
         </member>
         <member name="M:Core.Conditions.DummyCondition.#ctor(System.String)">

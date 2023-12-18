@@ -19,6 +19,16 @@
             The communication status (<see langword="true"/> if the communication is in error, <see langword="false"/> otherwise)
             </summary>
         </member>
+        <member name="F:EthercatByAds.Ads.Bits">
+            <summary>
+            All the digital variables read from the PLC
+            </summary>
+        </member>
+        <member name="F:EthercatByAds.Ads.Measures">
+            <summary>
+            All the analog variables read from the PLC
+            </summary>
+        </member>
         <member name="P:EthercatByAds.Ads.ReasonOfFailure">
             <summary>
             The reason of Ads communication failure
@@ -100,6 +110,12 @@
             <see langword="false"/> if a communication error occurred or <paramref name="variableName"/> is not found
             </returns>
         </member>
+        <member name="M:EthercatByAds.Ads.ReadMeasures">
+            <summary>
+            Read all the analog variables
+            </summary>
+            <returns>The array with the all the read values</returns>
+        </member>
         <member name="M:EthercatByAds.Ads.Read(System.String,System.Boolean@)">
             <summary>
             Read a variable from the PLC
@@ -114,6 +130,18 @@
             <see langword="true"/> if the resource is running and the operation completed,
             <see langword="false"/> if a communication error occurred or <paramref name="variableName"/> is not found
             </returns>
+        </member>
+        <member name="M:EthercatByAds.Ads.ReadBits">
+            <summary>
+            Read all the digital variables
+            </summary>
+            <returns>The array with the all the read values</returns>
+        </member>
+        <member name="M:EthercatByAds.Ads.ReadAll">
+            <summary>
+            Read all the available variables from PLC. See <see cref="F:EthercatByAds.Ads.Bits"/> for the digital ones and
+            <see cref="F:EthercatByAds.Ads.Measures"/> for the analog ones
+            </summary>
         </member>
         <member name="M:EthercatByAds.Ads.HandleError(System.String)">
             <summary>

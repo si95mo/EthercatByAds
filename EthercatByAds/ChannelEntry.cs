@@ -8,12 +8,12 @@
         /// <summary>
         /// The channel code (high level name)
         /// </summary>
-        internal string ChannelCode { get; set; } = string.Empty;
+        internal string ChannelCode { get; set; }
 
         /// <summary>
         /// The PLC variable name (low level)
         /// </summary>
-        internal string VariableName { get; set; } = string.Empty;
+        internal string VariableName { get; set; }
 
         /// <summary>
         /// Create a new entry of <see cref="ChannelEntry"/>
@@ -28,7 +28,7 @@
 
         public override string ToString()
         {
-            string description = $"{ChannelCode} - {VariableName}";
+            string description = string.Format("{0} - {1}", ChannelCode, VariableName);
             return description;
         }
     }
