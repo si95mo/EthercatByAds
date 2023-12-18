@@ -6,30 +6,35 @@ TwincatByAds.Example
 </name>
 </assembly>
 <members>
+<member name="T:TwincatByAds.Example.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
 <member name="P:TwincatByAds.Example.My.Resources.Resources.ResourceManager">
-	<summary>
+<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
-</member><member name="P:TwincatByAds.Example.My.Resources.Resources.Culture">
-	<summary>
+</member>
+<member name="P:TwincatByAds.Example.My.Resources.Resources.Culture">
+<summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="T:TwincatByAds.Example.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="F:TwincatByAds.Example.Program.AmsNetId">
-	<summary>
+</member>
+<member name="T:TwincatByAds.Example.Program">
+ <summary>
+ Ads DLL example application in VB
+ </summary>
+</member>
+<member name="F:TwincatByAds.Example.Program.AmsNetId">
+ <summary>
  The AMS net id address. Leave empty to connect to a local ADS server, otherwise specify the in the correct route
  </summary>
-</member><member name="M:TwincatByAds.Example.Program.Main">
-	<summary>
+</member>
+<member name="M:TwincatByAds.Example.Program.Main">
+ <summary>
  Application entry-point
- </summary>
-</member><member name="T:TwincatByAds.Example.Program">
-	<summary>
- Ads DLL example application in VB
  </summary>
 </member>
 </members>

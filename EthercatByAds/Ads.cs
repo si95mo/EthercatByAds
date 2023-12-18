@@ -318,25 +318,6 @@ namespace EthercatByAds
             List<double> measures = new List<double>();
             if (Initialized && resource.Channels.Count > 0)
             {
-                foreach (IChannel channel in resource.Channels)
-                    if (channel is TwincatAnalogInput)
-                        measures.Add((channel as TwincatAnalogInput).Value);
-            }
-
-            Measures = measures.ToArray();
-            return Measures;
-        }
-
-        /// <summary>
-        /// Read all the analog variables
-        /// </summary>
-        /// <returns>The array with the all the read values</returns>
-
-        public static double[] ReadMeasures()
-        {
-            List<double> measures = new List<double>();
-            if (Initialized && resource.Channels.Count > 0)
-            {
                 foreach (IChannel channel in resource.Channels.Cast<IChannel>())
                 {
                     if (channel is TwincatAnalogInput)
